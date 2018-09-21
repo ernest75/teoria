@@ -1,0 +1,34 @@
+How did viewing the difference b/w two versions help you spot the bug?
+
+You can see what changed on the new version quicker therefore the old version it's suposed to be clear of errors so you have to inspect only the new code so less code to review and find the bug.
+
+How could having easy access to the entire history of a file make you a more efficient programmer in the long term?
+If u can acces to the history of the code, first you can see how the improvement evolved and also you can experiment with diferent versions.
+
+
+What do you think are the pros and cons of manually choosing when to create a commit, like you do in Git, vs having versions automatically saved, like Google docs does?
+The pros of manually commit it's that you have the power to organize your history in a more logical sense, so you can save the diferent versions of your ptoject when you decide. The cons are that you are the one responsible for the commits so if you forget to do it or do it badly you can have problems.
+
+Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
+I guess Git allows to save multiple files in one commit because it's designed for progammers who use programs that can change multipe files even when you are only making one change and google docs don't cause it's suposed to control single files.
+
+How can you use the commands git log and git diff to view the history of files?
+git log to see all the commits in the repository and git diff to compare 2 commits
+
+How might using version control make you more confident to make changes that could break something?
+Cause you'll always be able to return to a commit that works well  
+
+Now that you have your workspace set up, what do you want to try using Git for?
+
+Have diferent versions of my programs and experiment a bit with didferrent posibilities. 
+
+Commands:
+
+q |    exit git log!
+git log  |    List the commits and show which files have changed
+git log --stat  |    Show addition information about the commits
+git diff id1 id2  |    Compare two commits
+git clone  |    Create a local copy/clone from the repository
+git config --global color.ui auto |    get colored diff output
+git checkout  |    Shows a previous version of the file. This is not a checkout to edit like in SVN or TFS!
+ 

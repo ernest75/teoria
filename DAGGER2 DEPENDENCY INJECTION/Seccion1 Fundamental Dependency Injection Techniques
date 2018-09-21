@@ -1,0 +1,89 @@
+Dependency is when one class or object depends (uses) from another to function. Ex Class1 uses  Class2, Class 1 depends on Class2. Another terminology is that Class1 is the Client and Classs2 is the Service.
+
+Clients can obtain references from services with:
+
+1. Active dependency resolution
+	
+	- Instantiation of the service inside the client
+
+	- Static method call (get)?
+
+	- Static global variable
+
+2. Passive dependency resolution or Dependency Injection
+
+	- Recive references from outside
+
+Clients can obtain references from outside with :
+(Fundamental Techniques of dependency injection)
+
+	- Constructor injection
+
+	- Method injection
+
+	- Field injection
+
+Constructor Injection :
+
+	Pros:
+
+		- Simple
+
+		- Constructor signature reflects dependencies
+
+		- Injected fields can be finalized
+
+		- Easy to mock services in unit tests
+
+	Cons:
+
+		- From the instructor None
+
+		- Ernest says if you have various Services on the client the constructor can be a litle bit compplicated with a lot of arguments
+
+Method Injection :
+
+	Pros:
+
+		- Method signature reflects dependencies
+
+		- Can happen after construction
+
+	Cons:
+
+		- Less explicit than Constructor Injection, the services are not group so is more difficult to know all the services of the client
+
+		- Can lead to implicit ordering requirements (temporal coupling) so you may need to call methods in a certain order to avoid null pointers exceptions
+
+Field Injection :
+
+	Pros: 
+
+		- Can happen after consttruction
+
+		- All cons of method injection (non explicit, temporal coupling)
+
+		- Non evident dependencies
+
+Questions outside the scope of fundamental techniques:
+
+	Where the services are initiantiated?
+
+	Who injects the services into clients
+
+	Large Scale Structure
+
+
+Thoughts from the youtube talk:
+
+	- Isolate the thing that varies
+
+	- Name the concept
+
+	- Define the role
+
+	- Inject the players	
+
+	- Nothing is Always Something	
+
+

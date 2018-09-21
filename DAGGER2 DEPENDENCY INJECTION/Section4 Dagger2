@@ -1,0 +1,157 @@
+Dependency injection is about decoupled (desassociat) code that follows segregation of responsabilities principle by keeping Construction and Functional sets of classes completely disjoined.
+
+Dagger2 intrinsic complexity :
+
+	- Code generation instead of runtime reflection
+
+Accidental complexity :
+
+	- Poor documentation
+
+	- Lack of best practices
+
+	- Too mmany features
+
+
+@Module : provides the services (objects) with methods that have the @Provide annotation
+
+The basic “building blocks” that Dagger uses are as follows:
+
+	- Components: are “injectors” that perform actual injection into “clients”. You have to expose the methods that will provide the services(not always).
+	
+	- Modules: are the objects in which “object graph” structure is defined (the way “services” need to be instantiated).
+	
+	- Scopes: are Java annotations which, when used, change the way “services” are being instantiated upon injection.
+
+
+Dagger conventions :
+	
+	- Once a service is provided it can be used as an argument in other provided methods 
+
+	- If you use the @Singleton annotation to make servide singleton u must anoted his component with @singleton too
+
+	- Components are interfaces annotated withh @Component
+
+	- Modules are clases annotated with @Module
+
+	- Methods in modules that provide services are annotated with @Provides 
+
+	- Void methods with single arguments defined on components generate injectors for the type of the argument ex void injectMain  	Activity(MainActivity activity)
+
+	- Client's non-private non-final fields annotated with @Inject will be injected by dagger components
+
+	- Component inter-dependencies specified as part of @Component annotation, Components can depend on another component ex @Component(dependencies = ApplicationComponent.class, modules = PresentationModule.class)
+
+	- Component B that depends on Component A has implicit access to all services exposed by Component A
+
+		Services from A can be used in injections by B
+
+		Services from A can be used inside modules by B
+
+	- If Component A is scoped, then all components that depend on it must be scoped too (define new scope)
+
+	- Subcomponents specified by @Subcomponent annotation
+
+	- The way to tell dagger who is the father of a subcomponent is exposing factory method on the parent witch returns the subcomponent Ex: inside ApplicationComponent public PresentationComponent newPresentationComponent(PresentationModule presentationModule);
+
+	- The argument of the facory method are subcomponent's modules
+
+	- Subcomonents get acces to all services provided by parent (provided, not just exposed)
+
+	- Components can use moree than one module
+
+	- Modules of a single Component share the same objects graph.
+
+	- Subcomponents have access to all services provided by parent's modules.
+
+	- Dagger auutomatically instantiates modules with no arguments constructors
+
+	- Dagger can instantiate modules that have no additional bootstraping dependencies.
+
+	- Dagger can automatically discover services having a public constructor with @Inject annotation such services do not need to be explicity provided in modules, wich reduces the boilerplate, but we loose the hability to inspect the objects graph
+
+	 b4 Dagger
+
+
+	 Application Lifecycle : CompositionRoot
+
+	 Activity Lifecyvle: PresentationCompositionRoot <- Injector <- QuestionsListActivity 
+
+	 With Dagger2
+
+	 Application Lifecycle : ApplicationComponent
+
+	 Activity Lifecyvle: PresentationComponent <- Injector <- QuestionsListActivity 
+
+	 Modules can have non default constructors
+
+	 Bootstrapping dependencies are services, or any other dependencies, that a module requires to be able to provide other services, but can't providde by itself. Bootstrapping dependencies should be injected into modules at construcion time.
+
+	 Components can function as injectors.
+
+	 Components can use of services of other components by simply declare the dependencies b4 the declaration of modules. 
+	 Ex @Component(dependencies = anotherComponent.class, modules = myModule.class). If anotherComponent.class has @Singleton scope annotation on it then the componentDependent.class needs to have a custom scope annotation (You can't simply add @singleton annotation to componentDependent.class dagger dosen't allow it ) 
+
+	 ex Scope annotation
+
+	 	@Scope
+		@Retention(RetentionPolicy.RUNTIME)
+		public @interface PresentationScope {
+		}	
+
+	Instructor recomends the use of subcomonents instead of declaring dependencies between components.
+
+	Providing Context :
+
+	Client asks for Context -> Activity
+
+	Cliet asks for Applicaltion -> Application
+
+	No need for getAplicationContext();
+
+	Liskov Substitution Principle (LSP): Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
+
+							Application	Activity	Service
+			Show a Dialog		NO		 YES		  NO
+			Start an Activity	NO		 YES		  NO
+			Layout Inflation	NO		 YES		  NO
+			Start a Service		YES		 YES		  YES
+			Bind to a Service	YES		 YES		  YES
+			Send a Broadcast	YES		 YES		  YES
+			Register 
+			BroadcastReceiver	YES		 YES		  YES
+			Load Resource 	
+			Values				YES		 YES		  YES
+
+ 	Restrincting dagger's components to be used only in Activities and Fragments (on the presentation side)	is a very good idea, it's worth to have this seemingly duplicated code in 3 clases (BaseFragment,BaseDialog,BaseActivity) in order to prevent from components to be used outside of Activities and Fragments.
+
+ 	How to build Construction Set :
+
+ 		- Implement ApplicationComponent and PresentationComponent
+ 		
+ 		- Instantiate ApplicationComponent in your own custom Application subclass (myAplication)
+
+ 		- Instantiate PresentationComponent in base classes for activities and fragments
+
+ 		- Inject one service
+
+ 		- Keep growing
+
+ 	How to do it quickly :
+
+ 		- Copy-paste dependencyinjection package into the project
+
+ 		- Fix compilation errors by removing services you don't need
+
+ 		- Copy-paste ApplicationComponent initialization into your application subclass (myAplication)
+
+ 		- Copy-paste PresentationComponent initialization into base classes for activities and fragments
+
+ 		- Inject one service
+
+
+ 	Once the strtucuture is implemented the only things to remember is how to provide services in modules and add additional modules and how to annotate constructors with @Inject annotations if you're going to use this convention.
+
+
+
+

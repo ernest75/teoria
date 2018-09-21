@@ -1,0 +1,45 @@
+Architectural patterns Vs Design patterns
+
+	- Broader in scope
+
+	- Not as detailed
+
+	- Architectural pattern is not architecture of the app, architectural pattern provides some guidance to make the architecture of the app more maintenable
+
+
+Popular architectural patterns
+
+	- Presentation: MVx
+
+	- Notifications: publish-subsribe architecture(Event Bus Libraries)
+
+	- State change management: event-driven architecture (poular on aplications that need to work offline)
+
+
+Dependency Injection Architectural Patern (DIAP)
+
+	- DIAP ia a extrapolation of fundamental dependency injection techniques to a system level
+
+	- The main characteristic of DIAP is segregation of aplication's logic into two sets of classes:
+
+		1. Functional set : Contains clases that encapsulate core aplication's functionality
+
+		2. Construction set : Contains clases that resolve dependencies and instantiate objects from functional set
+
+		The two sets of clases must be disjoined, so don't have overlaping elements or they should be completly separeted. In other words one class can be or Functional or Construction, never both.
+
+		Segregation of clases is manifestation of Separation of Concerns which is the father of Single responsability principle witch states that one class should have only one responsability 
+
+Relantionship between fundamental dependency injection techniques and DIAP :
+
+	- Different levels of abstraction (class vs application) :
+
+		 Fundammental techniques class level, DIAP application level.
+
+	- Compplement each other
+
+	- Fundamental techniques main benefit : class level testability
+
+	- DIAP main benefit : application level maintainbality
+
+	- All implementation of DIAP use at least one of the three fundamnetal techniques under the hood

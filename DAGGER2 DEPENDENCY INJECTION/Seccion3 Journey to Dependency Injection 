@@ -1,0 +1,72 @@
+
+Making acttivities or fragments dependent on networking logic is a sure way to make spaghetti codde
+
+You must separate business logic from UI logic and from networking logic.
+
+Singletons are big no for the instructor
+
+Law of demeter or LOD (is not a prope law is more like a principles to follow)
+
+	- Principle of least knowledge : the components of the system should know as less as posible of their surroundings
+
+	- Reduce amount of dependency to a minimum
+
+	- Makes code more readable and maintainable
+
+Clean code patern: Take services that are being used by activities and put them in one single place in the Appliication class.
+
+Factory Patern : Passing parameters to the method to instantiate other services, we create objects without exposing the creation logic to the client and refer to newly created object using a common interface or class.
+
+In the example app CompositionRoot takes acre of aplication level dependencies and PresentationCompositionRoot takes care of activity level dependencies. PresentationCR has a reference to CompositionRoot in order to be able to give the services of aplication level (CompositionRoot) to each activity, in that way we avoid the problem of having the services different lifecycles, now activities recive their services whitout caring of the services lyfecicle's. That is done because activity has his own lyfecycle.
+
+Interesting aproach to MVC, using a Factory to return the view.
+
+public class ViewMvcFactory {
+
+    private final LayoutInflater mLayoutInflater;
+
+    public ViewMvcFactory(LayoutInflater layoutInflater) {
+        mLayoutInflater = layoutInflater;
+    }
+
+    /**
+     * Instantiate a new implementation of MVC view. The returned instance will be casted to MVC view
+     * type inferred by java's automatic type inference.
+     * @param mvcViewClass the class of the required MVC view
+     * @param container this container will be used as MVC view's parent. See {@link LayoutInflater#inflate(int, ViewGroup)}
+     * @param <T> the type of the required MVC view
+     * @return new instance of MVC view
+     */
+    public <T extends ViewMvc> T newInstance(Class<T> mvcViewClass, @Nullable ViewGroup container) {
+
+        ViewMvc viewMvc;
+
+        if (mvcViewClass == QuestionsListViewMvc.class) {
+            viewMvc = new QuestionsListViewMvcImpl(mLayoutInflater, container);
+        }
+        else if (mvcViewClass == QuestionDetailsViewMvc.class) {
+            viewMvc = new QuestionDetailsViewMvcImpl(mLayoutInflater, container);
+        }
+        else {
+            throw new IllegalArgumentException("unsupported MVC view class " + mvcViewClass);
+        }
+
+        //noinspection unchecked
+        return (T) viewMvc;
+    }
+
+
+
+    APPLICATION
+
+
+    CONSTRUCTION SET   																		FUNCTIONAL SET
+
+    	COMPOSITIONROOT  		
+
+    	PRESENTATION
+    	CompositionRoot   				<-Convention over Configuration->					   CLASSES
+    										@Servide annotation
+    	INJECTOR
+
+    	VIEWMVCFACTORY

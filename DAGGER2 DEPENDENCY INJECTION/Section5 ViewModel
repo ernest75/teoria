@@ -1,0 +1,81 @@
+ViewModel is a special component that survives configuration changes.
+
+So you can use it to avoid aditional network calls whem the phone is rotated
+
+ViewModel should be initialize with providers methods if u want him to keep changes on rotation.
+
+ViewModelProviders only know how to instantiate ViewModels that have empty default constructors. To work around this you need to create a ViewModelFacory. 
+
+ViewModelFactory class should be injected into clients.
+
+Dagger2 Multibinding Insttructor says is better to avoid due his complexity and the dificulty to debug it.
+
+To use multibinding (following example:
+
+1 - Define new annotation :
+
+	@Target(ElementType.METHOD)
+    @Retention(RetentionPolicy.RUNTIME)
+    @MapKey // Multibinnding annotation
+    @interface ViewModelKey {
+        Class<? extends ViewModel> value();
+    }
+
+    This annotation says that it will be used for services that should be automatically aggregated into Map by Dagger. The values of the map will conatin providers for subclasses of ViewModel.
+
+2 - Still in the module :
+
+	The provides methods will have to use the @IntoMap annotation and the created by oursselves annotation in this case @ViewModelKey
+
+	@Provides
+    @IntoMap
+    @ViewModelKey(QuestionDetailsViewModel.class)
+    ViewModel questionDetailsViewModel(FetchQuestionDetailsUseCase fetchQuestionDetailsUseCase) //bootsraping dependency into constructor{
+        return new QuestionDetailsViewModel(fetchQuestionDetailsUseCase);
+    }
+
+    Also important to remember that the return type of the method has to be generic in this case ViewModel instead QuestionDetailsViewModel. This provide method will insert the questionDetailsVViewModel into the map with the key of the name of the class.
+
+3 - Also in the module : 
+
+	The provide method who will use the map class to create the object (in our case the viewmodel)
+
+	@Provides
+    ViewModelFactory viewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> providerMap) {
+        return new ViewModelFactory(providerMap);
+    }
+
+ 	The provider map consits of some class that extends ViewModel and a "provider"
+
+ 4 - In the facrory class "maped" : 
+
+ 	Constructor and field of the map of ViewModels
+
+ 	private final Map<Class<? extends ViewModel>, Provider<ViewModel>> mProviderMap;
+
+    public ViewModelFactory(Map<Class<? extends ViewModel>, Provider<ViewModel>> providerMap) {
+        mProviderMap = providerMap;
+    }
+
+    And get the ViewMOdel Class from the map
+
+    @SuppressWarnings("unchecked")
+    @NonNull
+    @Override
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        return (T) mProviderMap.get(modelClass).get();
+    }
+
+    ViewModel summary :
+
+    You can't inject ViewModels directly into the clients, instead you'll need to initialize any inject ViewModel factory, witch can be used to initialize ViewModels.
+
+    ViewModelFactory can be implemented by :
+
+    	- Injection of all the dependencies of all ViewModels
+
+    	- Injection of ViewModels 
+
+    	- Dagger multibinding convention
+
+     
