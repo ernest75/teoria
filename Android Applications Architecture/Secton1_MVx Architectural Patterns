@@ -1,0 +1,115 @@
+
+Presentation Layer Architectural Pattern
+
+	Logical layers :
+
+		Logic in a system with graphical user interface (GUI) can be seen as segregated into four abstract layers:
+
+			- User Interface (UI) Layer
+
+			- Application Layer
+
+			- Domain Layer
+
+			- Infrastructure Layer
+
+		Abstract layers means that dosen't need to be implemented to exist, a single class can have all the layers. 
+
+
+
+User Interface (UI) Layer responsabilitites :
+
+	- Render System output
+
+	- Capture user interactions with UI elements and route them into the system (not handling)
+
+Application Layer responsabilities :
+
+	- Controls user flow inside the system (Ex responsible of navigation betwen diferent screens)
+
+	- Pass system output to UI layer
+
+	- Handle user interactions originated in UI layer
+
+	Application layer is a glue layer that integrates stand-alone pieces of functionality from other layers, to achieve the desired user experience.
+
+Domain Layer responsabilities : 
+
+	- Execute business domain flows (also known as business logic)
+
+Infrastructure Layer responsabilities : 
+
+	- Provide general functionality not specific to business domain like networking libraries, databases and event buses
+
+
+Presentation Layer : 
+
+Combines UI and application layers in GUI (Graphical User Interface) systems, so his responsabilities are the combination of UI and application layer's responsabilities (the first 2).
+
+	Responsabilities:
+
+		- Render System output
+
+		- Capture and handle user interactions with UI elements
+
+		- Control user flow inside the system
+
+
+Archtectural Pattern : 
+
+Reusable high level structure for system organization. High level = independent of implementation details.
+
+
+Presentation Layer Architectural Pattern :
+
+Reusable high level structure for presentation layer organization
+
+
+MVX :
+
+ Is a family of presentation layer architectural patterns
+
+ Family = multiple closely relatted members (MVC, MVP, MVVM, etc.)
+
+ Structure : 
+
+ 	- Model: State and/or business logic and/or data structures
+
+ 	- View : User interface
+
+ 	- X : Business logic and/or flow control logic and/or data structures (depends on the specifics of implementation and interpretation)
+
+
+ The main benefit of Mvx is that allows to decouple UI logic ( better testability it's a by-product of decoupled logic). The UI logic is in the view in all Mvx implementations.
+
+ UI logic should the be decoupled from the rest of the system is due to its special characteristics :
+
+ 	- Detailed and accurate requirments (UI mockups)
+
+ 	- Much higher rate of changes (in most cases)
+
+ 	- Unreadabble - verbose, messy, hacky, etc... Usually is not something that yyou can "picture" from the source code directly
+
+ 	- Easy to test manually
+
+ 	- Hardest to test automatically
+
+Why not decouple UI logic inside Activity : 
+
+ Acctivity is a God object (Knows too much and has too many responsabilities) so it's IMPOSIBLE to decouple UI logic if it resides inside activity. Fragments are God objects too.
+
+Ther UI logic should be Extract into Standalone Class.
+
+
+MVP : 
+
+MVP Views should be easy to replace wth alternative implementation and should be reusable.
+
+Reusability is important for composite views.
+
+
+ 	
+
+
+
+

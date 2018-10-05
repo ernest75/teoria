@@ -1,0 +1,36 @@
+Factories are special kind of classes that intiantiate other functional classes. They usually instantiantiate either single type of objects or a single hierarchy of objects.
+
+Open Closed Principle : the abillity to modify the functionality of a unit without changing its code.
+
+Controllers should not know anyting about the network. All network logic should be extracted into standalone classes (UseCase name comes from clean architecture concept). 
+
+The activity (Controller), subscribes to notifications from the use case in OnStart, and unsubscribes in onStop. Then it fires the use case in OnStart to fetch the required data. 
+
+UseCases are just objects that encapsulate application flows and processes. Each use case handles a single flow. 
+
+In FetchQuestionDetailsUseCase the flow is server request, followed by data conversion, and then by notification. It can be a lot of things, Uses cases can perform computations, handle bluetooth comunication, observe device state ... At the very high level, use cases are just abstractions overflows that don't require user interaction. If some flow does require user interaction in-between, it can be broken down into multiple use cases. 
+
+The most important thing about use cases is that each of them should handle just one single flow. 
+
+In the presence of Usecases controllers become uses cases orchestrators. They fire their uses cases when appropriate, and know what to do with use cases results.
+
+You can't unit test activities so all the logic the resides in them it can't be unit tested neither. To workaround this lilmitation you can create standalones conttrollers. Activity will delegagte life cycle events to his controller, so it needs onStart and onStop methods.
+
+You can't inject MvcView into controller in construction, the reason is the same that required view MVC factory. MvcView needs parent Android view group to be constructed, but it's a runtime parameter, therefore you need to add the method to inject the view into the controller after the construction.
+
+Static calls to Android ApI's can't be unit testing neither, so you have to get rid of them by creating an other class that contain them.
+
+Controller is not a class is a component. Compoonents can consist of several classes, so you can abstract logic from the activity so will be posible to unit test. So activity is always controller. If you don't unit test your code it's better to keep controllers in one piece.
+
+There is a rae bug on the Android api, it's on the way Android handles events on the UI thread. The natural expectation is that when you start a new activity (in the app example mScreensnavigator.toDialogDetails(question.getId())) no further interacton ffor the old activity can take place. But thatt is not always the case. Due to the way Android framework operates, I can get notifications about user interacions even after I already started a new activity in case of the specific controller of the app exxample another activity will be started. This is a corner case bug and it happens very rarely. Usually it involves a combination of quick successive user interactions and slow hardware. to prevent against this bug without Mvc will be very difficult, therefore it's not worth it. With Mvc is very eassy you just unsuscribe the listener when the new activity it's been launched. Usually you don't need to do that, but if your app has many users, and you get some voodoo crash reports, you can try to detach the UI from the controllers and see if it results in a better stability. Another option is unregister the listener in onStop, and register it on onStart.
+
+Activities are controllers, as such they should contain only application level functionality. Therefore the main and infrastructure logic should be extracted into UseCases.
+
+UseCase are simple objects that encappsulates flows. The flows they execute can be local or remote, long running or short running, synchronus or asynchronus...
+
+UseCases can be made global and shared among all the clients. Controllers don't really care whether UseCases are global or local. Dependency injection abstracts out these impplementatiion details. Another benefit of deppendency injection : abstraction of dependencies life clicles.
+When the app is unit tested is better to extract most controller's logic into stand alone classes to make it testable. This effectively breaks the Controller into multiple classes and increases complexity, only should be done when Unit testing.
+
+Some developers think that UseCase represent the model, other think that UseCases still belong to the Controller and MOdel is something else.
+
+Instructor thinks is not really important what you define as a Model, Use the mental picture that you find the most conveninent.

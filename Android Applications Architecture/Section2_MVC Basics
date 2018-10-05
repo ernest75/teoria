@@ -1,0 +1,73 @@
+
+* Hint always use the inflator wit the 3 arguments (int layoutid, View viewParent,boolean attachtoRoot (false)) otherwise the app my crash with the message "some android view already has a parent".
+
+Activity dosen't have rootview so when promted for it in activity pass null.
+
+Adopting the interfaces on MVC views it makes code easy readable and maintenable in the future.
+
+*2 picture
+
+QuestionsListViewMvcImpl encapsulates all UI logic, implements view Interface QuestionListViewMvc and listener interface.
+
+The activity(QuestionsListActivity) makes use of View interface to show questions. 
+
+View Interface depends on listener interface that can be used to notify to interested parties about click on questions. 
+
+Activity imlements the listener interface because wants to know about user interactions (reactive). 
+
+And the view sends notifications to listeners(Activity). 
+
+The view can send notifications to activity without knowing about his existance. As far as the view is concerned any class of the app could become a listener. 
+
+The activity is the controller therefore contains aplication layer logic. 
+
+The View contains UI layer logic.
+
+setTag() getTag() methods on View are basically a way to have memories and pass objects.
+
+MVC View in ListView
+
+No need for ViewHolder hack 
+
+Prevents messy adapters cause frees the adapters from UI logic
+
+Reusable (adapter)
+
+(Standarization)This screen uses the same level of absraction for the topmost UI container and child containers. This makes maintenance much easier. Is very important architecturally, when you find an abstraction that can be used universally, and it also happens to address performance issues, you can be very confident that this is the natural abstractiion of the domain. That's what MVC view is, the natural abstraction for Android development.
+
+Listeners interfaces are specific to each view.
+
+Be very carefull on abstracting funcionnality on the BaseViewMvc class. Extract functionality into base classes, only if you are confident that it is general and relevant to all subclases.
+
+*hint return Collections.unmodifiableSet(mListeners) for return methods if you don't want the subclasses to modify the List in this case mListeners
+
+Why not use Android Views as MvcViews : 
+
+ - First you can, you only have to make your BaseMvcView extend View (or framelayout)
+
+ - You inherit a lot of code and more than 100 methods many of them had nothing to do with UI functionality because like activity android Views are God objects.
+
+ - I f you want to have additional ViewGroup as the root of the hierarchy, you need to build another standalone hierarchy.
+
+ So the problem with Android Views beeing MvcViews are inheritance and them being God objects.
+
+ If you create your MvcViews you go with composition instead of inheritance, this way insteadd of inheriting from Android views, MvcViews simply contain them.
+
+
+ Summary of MVC Basics : 
+
+ 	- Mvc views are classes that implement ViewMvc interface.( has only one method getRootView())
+
+ 	- Interactive MVC views implement ObservableViewMvc interface.
+
+ 	- Dedicated interfaces for specific MVC views and their observers
+
+ 	- Mvc views can be nested
+
+ 	- Activities are MVC controllers
+
+ 	- Android Views are non-optimal imlementation choice fror MVC views. 
+ 
+
+
+

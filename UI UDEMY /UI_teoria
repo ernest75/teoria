@@ -1,0 +1,2 @@
+Al treballar amb icones és millor treballar amb .svg que amb .png. Els svg són vectors i per tant no perden qualitat quant s'engrndeixen o es fan petits, mentres que els .png son fixes i si erden qualitat al ferse grans o petits. 
+

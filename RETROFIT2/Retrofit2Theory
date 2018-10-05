@@ -1,0 +1,81 @@
+To check witch version of retrofit is up to date : https://square.github.io/retrofit/
+
+Retrofit helps to make HTPP connection betwen Client and Server. 
+
+Client sends request server. The connection are done thru HTTP methods.
+
+Retrofit annotations for HTTp methods :
+
+	- GET : used to get data
+
+	- POST : used to post (send) data
+
+	- PUT
+
+	- DELETE 
+
+	- HEAD
+
+Most used get and post.
+
+
+Retrofit works with an interface witch you define methods inside with @Post or @Get requests.
+
+You created an object of retrofit, with the retrofit builder. Then that object allows you to create and object of the interface that you created with the methods, and then you can acces to the methods, enqueue them and operate with the responses from server.
+
+@BODY :  
+
+To send the data on a Post request in the body of the HTTP, so it gives control of the request body of a POST/PUT
+
+Ex:
+
+@POST("/posts")
+    Call<ResponseBody> getUserWithPost(@Body String hello)
+
+
+
+@QUERY : 
+
+To add parameters into the url.
+
+Ex: @GET("comments")
+    Call<ResponseBody> getCommentsByPostId(@Query("postId")int postId);
+
+You can add as much queries as you like (of course).
+
+
+
+@QUERYMAP : 
+
+Query parameter keys and values appended to the URL.
+
+You pass a map (query, value) to the call.
+
+Ex: @GET("someInfo")
+	Call<ResponseBody> getInfoFromServer (@QueryMap mapQuery)
+Map<String,String> map = new HashMap<>();
+map.put("userId","1");
+map.put("id","2");
+
+api.getInfoFromServer(map)
+
+
+@PATH :
+
+To define part of the url.
+
+Ex: @GET("users/{id}")
+    Call<ResponseBody> getPostsByUserIdWithPath(@Path("id") int id);
+
+
+@URL :
+
+To change base url in the method
+
+Ex: @GET
+    Call<ResponseBody> getIp(@Url String url) this equals to = @GET("https://api.ipify.org") Call<ResponseBody> getIp(); if String url = https://api.ipify.org (of course)
+
+ Per utilitzar jsontopojo web s'hauria de fer servir eclipse
+
+
+
