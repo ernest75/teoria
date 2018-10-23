@@ -1,0 +1,57 @@
+Fragments are controllers
+
+Fragment does have parent Android view group so when clling method getSomeViewMvc you'll need to pass the Viewgroup container as an argument.
+
+requireActivity method in fragment returns the activity where this fragmant is allocated
+
+Dealing with Android Views in the construction set can hurt long term maintainability
+
+Framents are very complex to work with but they do make for a better user exxpperience.
+
+How to cmunicate betwen 2 fragments? trhug bundle + fragment1.setArguments
+
+FragmentFrameHelper is a "hack" class that improves perfromance and avoids crashes that happen with fragments in prodcution.
+
+Fragments in MVC : 
+
+	- Fragments are controllers
+
+	- Unlike activities, Fragments are nested controllers
+
+
+MVC Nesting Options : 
+
+	- Nest Mvc views through composition (Toolbar)
+
+		Benefit: Low Coupling betwen the parent and the child
+
+		Drawback : Moderate reuse effortt, F ex the interface of the paarent becomes a superset of interfaces of all its children
+
+		Is the option you should choose in most cases 
+
+	- MVC views through inheritance (side menu)
+
+		Benefits: Low reuse effort, Easy implementation of wrappers
+
+		Drawback: Very high coupling, Inheritance coupling it's so strong that it effectively couples all the children through their common parent.
+
+		Use inheritacne with caution ex, Anddroid Framework.
+
+	- Nest fragments as MVC controllers 
+
+		Benefits : Full functional delegation, Low reuse effort, Very low coupling
+
+		Drawbacks : Complexity, Performance, Fragments
+
+Nesting through composition and inherittance happens in the UI Layer and nesting of controllers into the appliication layer.Exception ViewPager
+
+NO SYSTEM CAN BE 100% CLEAN
+
+Reasons to Choose Nested controllers over nesting Views :
+
+	- If part of the screen contains independent and unrelatedd functionality. For ex Ads
+
+	- Big teams , so they can deliver reusable controllers
+
+	- Break down big conttrollers
+

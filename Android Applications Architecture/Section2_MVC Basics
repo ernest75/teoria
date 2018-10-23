@@ -13,7 +13,7 @@ The activity(QuestionsListActivity) makes use of View interface to show question
 
 View Interface depends on listener interface that can be used to notify to interested parties about click on questions. 
 
-Activity imlements the listener interface because wants to know about user interactions (reactive). 
+Activity imlpements the listener interface because wants to know about user interactions (reactive). 
 
 And the view sends notifications to listeners(Activity). 
 

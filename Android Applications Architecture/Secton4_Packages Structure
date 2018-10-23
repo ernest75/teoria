@@ -1,0 +1,14 @@
+Packages are part of application's architecture.
+
+The way you package your application today determines how easy will be to read the code tomorrow and understand what it does later.
+
+It will also affect the way you structure the dependencies in the code itself.
+
+You should be able to tell the business domain targeted by the application just by looking at it's top-level packages.
+
+Not only top level packages are important. All of them are.
+
+You want to structure your code in such a way that classes which often change together sit as closely as possible in the package structure.
+
+If there's more than 5 classes in one package it's time to look if you can reestructure your packages and crerate sub-packages.
+

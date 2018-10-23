@@ -15,8 +15,6 @@ Presentation Layer Architectural Pattern
 
 		Abstract layers means that dosen't need to be implemented to exist, a single class can have all the layers. 
 
-
-
 User Interface (UI) Layer responsabilitites :
 
 	- Render System output
@@ -82,13 +80,13 @@ MVX :
 
  The main benefit of Mvx is that allows to decouple UI logic ( better testability it's a by-product of decoupled logic). The UI logic is in the view in all Mvx implementations.
 
- UI logic should the be decoupled from the rest of the system is due to its special characteristics :
+ UI logic should be decoupled from the rest of the system is due to its special characteristics :
 
  	- Detailed and accurate requirments (UI mockups)
 
  	- Much higher rate of changes (in most cases)
 
- 	- Unreadabble - verbose, messy, hacky, etc... Usually is not something that yyou can "picture" from the source code directly
+ 	- Unreadabble - verbose, messy, hacky, etc... Usually is not something that you can "picture" from the source code directly
 
  	- Easy to test manually
 

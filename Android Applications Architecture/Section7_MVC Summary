@@ -1,0 +1,44 @@
+MVC SUMMARY
+
+The main benefit of MVx is decoupled UI logic
+
+Extract UI LOgic Into Sttandalone class 
+
+*4 picture
+
+Activities and Fragments are controllers, the views are stand alone classes
+
+Benefits of MVC : 
+
+	- Decoupled UI logic
+
+	- Provides multiple strategies for reuse of UI and application layer logic
+
+	- Optional boost to unit testability by extracton of standalone controllers
+
+	- No addditional dependencies 
+
+	- Easy integration with dependency injection
+
+	- Standardization of the codebase
+
+Drawbacks of MVC : 
+
+	 - Initial learning curve
+
+	 - Unfamiliar
+
+	 - Write more code ...? That is not a drawbck form the point of view of the instructor
+
+
+Mvc is the most mature, versatile and battle-tested architectural pattern fro Android development.
+
+ARCHITECTCTURE SUMMARY
+
+Managing complexity = being able to deal with small parts of your application while safely ignoring the rest.
+
+Separation of concerns : Separaing differnett application's concerns in code allows you to work with each one of them in isolation. Mvc and dependency Injection architectural patterns do this.
+
+In general when writting codde remember that The code is read much more often than it's witten or modified.
+
+The most important factor in code redabilaty is simplicity.	

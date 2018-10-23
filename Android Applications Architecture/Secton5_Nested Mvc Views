@@ -1,0 +1,121 @@
+If you have small nested views that are not exposed at view-controller boundary you can skip making the interface for them as it will not serve any purpose, you don't need the interface to documented it. 
+
+If the nested view is not small it's better to extract an interface for documentation purposes.
+
+The interface of the parent MVC view will be a superset of interfaces of all the nested views. This way the controller won't be exposed to the fact that nesting takes place in the view.
+
+Adding toolbar:
+
+- Getting reference of toolbar android viewgroup 
+
+- Initialiazing toolbarviewmvc passing toolbar android viewgroup as parent (need to add viewMvcFacrtory in constructor)
+
+- Add the rootview of toolbarviewmvc into Toolbar android viewgroup
+
+Making navigation with arrow on toolbar : 
+
+- On QuestionDetailsMvc : 
+
+	- Create interface ToolBarListener
+
+	- Make it extend ObservableViewMvc and make the type the listener just created
+
+- On ToolbarViewMvc :
+
+	- Make interface listener "navigation back" & make object reference to it global to the class amd declare method onBackNavigation
+
+	- Make Method to show button (arrow) & passing reference to listener navigation back through constructor that what efectevly does is make listener of the "navigation back" to class who will be calling this method through ToolBarMvcView.methodName()
+
+	- Create on click listener for button (arrow), who will take the global variable type "navigation back" and call the method declared on the interface  
+
+- On QuestionDetailsMvcViewImpl :
+
+	- Adding toolbar
+
+	- Change inheritance to BaseObservableViewMvc and pass the listener type toolbarlistener 
+
+	- Call to enableBackButton method, crate a new "Toolbarlistener" and "inform to all listeners" that onBackButtonClicked has to be called(other words user clicked back arrow)
+
+ 
+
+- On ViewMvcFactory : 
+
+	- Adding "this" on the construction of QuestionsDetailsViewImpl on getQuestiondetailsViewMvc, to add viewMvcfactory to QuestiondetailsViewImpl, who will construct ToolbarMvcView.
+
+- On Activity :
+
+	- Implement QuestionDetailsViewMvc.ToolBarListener and on the override method handle back naviigation (in this case call onBackPressed)  
+
+	- Register lisreners for nestedd view, MvcView
+
+Other approach:
+
+	- Make toolbar view as observable, resgister QuestionDetailsViewImpl as a listener, and the enable the up button
+
+
+How to Add Nested MvcViews : 
+
+	- Declare an empty Android ViewGroup in the parent MvcView (usually framelayout)
+
+	- Instantiate a new MvcView that you want to nest in hte parent (Best way to do that is using MvcFactory)
+
+	- Add nested view's root Android View to parent's Android View Group
+
+	- Propagate nested view's Api to parent's API (optional)
+
+Benefits of nested Views : 
+
+	- Reusable UI elements
+
+	- Clear boundary that can be further decoupled in interfaces
+
+	- Dependencies of nested views are hidden from parent thnks to dependency injection
+
+	- Is composition technique not inheritance
+
+No code base can be 100% clean, stay pragmatic and don't wrestle with the app for the sake of purity.
+
+Whenever you need to expose implementation details it's alright to make the controller aware of the details of the view but not the other way around.
+
+A common characterisitci of proper design and architecture is that you need to write more code to establish proper abstractions and boundaries.
+
+How to make navigation "clear"
+
+	intent.setFlags(intent.getFlags()) | Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+How to Add Nested MVC View through Inheritance
+
+	- Declare an empty Android ViewGroup in the parent MVC view (usually - frameLayout) En ex app layout_drawer id = "frame_content"
+
+	- Override setRootView(view) in parennt's Mvc view; new implementation should add the argument to parent's Android View Group
+	In ex app = mFramelayout(add view)
+
+	- Make the child Mvc View extend the parent Mvc View also check the interfaces
+
+Benefits of Nestedd MVC Views through Inheritance
+
+	- Reusable UI elements
+
+	- Very easy to reuse
+
+Dangers of Nested MVC Views through Inheritance
+
+	- Strong coupling between parent and child MVC views
+
+	- Strong coupling betwen different child MVC views through parent MVC view. -> Changing the implementation of the parent can cause bugs in the entire codebase.
+
+	- Limited reusability
+
+	- All other dangers associated with inheritance
+
+In general favor composiiton over inheritance, but always keep inheritance as a posibility.
+
+Also sometimes <controller can be exposed to view's implementation details, often you can't abstract all UI implementation details from the controller. The more complex the UI of your application, the harder it will be to keep it 100% abstracted.
+
+From purely architectural point of view there is really no problem with letting the controller know about the implementation of the view. However it makes the interactiom betwen the 2 more complex. That's why you'd want to minimize the exposure as much as possible.
+
+Views should know nothing about controllers!!!
+
+	- ----------
+
+REDO TOOLBAR AND MAKE OTHER APPROACH AND TRY TO NEST ANOTHER VIEW again
