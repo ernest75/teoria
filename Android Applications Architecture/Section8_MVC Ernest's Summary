@@ -1,0 +1,14 @@
+
+Com esta etructurat el onClick el la row del ListView :
+
+El principi de la cadena és el view que l'usuari clicka, en aquest cas l'element "row" del ListView i accedim a ell a traves del adapter 
+
+El final és el responsable que executa l'acció que el click provoca, en aquest cas l'activity.
+
+La cadena es va passant implementant interfaces i així es van conectant diferents classes.
+
+L'adapter té un interface (public interface OnQuestionClickListener {void onQuestionClicked(Question question);}) i una referencia a aquest interface (private final OnQuestionClickListener mOnQuestionClickListener;). Quant el view es clicat per l'usuari la referencia crida al metode definit a l'interface : mOnQuestionClickListener.onQuestionClicked(question);
+
+El ViewImpl implementa l'interface del adapter (OnQuestionClickListener) i l'interface QuestionListViewMvc. Adopta l'observer patern per notificar a qui l'observi a traves del metode onQuestionclicked definit a l''interface listener que tbe esta al interface ViewMvc.
+
+L'activity o qui vulgui observar implementa l'interface Listener definit en ViewMvc. Crea un camp per al ViewMvc(impl). Al metode que has de sobreescriure de l'interface listener realitzes l'accio que vulguis.

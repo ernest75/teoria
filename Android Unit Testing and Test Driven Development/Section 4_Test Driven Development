@@ -1,0 +1,76 @@
+
+Issues with unit tests after production code :
+
+	- Hard to deduce requirements
+
+	- Intrinsic bias in testing of the self written code
+
+	- Can't know whether all requirements were tested
+
+	- Boring
+
+Solution TDD
+
+All test Up-Front Technique : 
+
+	- Create an empty class for SUT
+
+	- Write all the required tests
+
+		You can expand SUT's public API to make the test compile
+
+		You can't write internal impplementation of SUT
+
+	- Run the tests 
+
+	- Debug until all tests pass
+
+
+All tests up-front benefits and limitations :
+
+	- (Is not anymore) Hard to deduce the requirements cause you create first the tests with the requirements
+
+	- (Is not anymore) Intrinsic bias in testing of the self-written code cause there's no code to be bias with
+
+	- Can't know whether all requirements were tested
+
+
+
+Rules of TDD by Uncle Bob :
+
+	- You are not allowed to write any production code unless it is to make a failing unit test pass
+
+	- You are not allowed to write any more of a unit test than is sufficient to fail, and compilation failures are failures
+
+	- You are not allowed to write any more production code than is sufficient to pass the one failing unit test
+
+
+Uncle's Bob's technique benefits and limitations : 
+
+	- No need to deduce requirements cause you only write code after converting the requirements  
+
+	- No bias cause you start with the test
+
+	- All requirements are tested cause you write first the test and then the production code according to it.
+
+	- Design requires less mental effort 
+
+
+Testing Observers : 
+
+	- Test that you can register more than one listener
+
+
+
+@Captor ArgumentCaptor<List<CartItem>> mAcListCartItem;
+@Captor is another Mockito annotation and it will initialize the mAcListCartItem to argument captor oh this type (ArgumentCaptor<List<CartItem>>).
+
+
+Model (Contact,CartItem...) needs to have equals and hashCode methods to be able to be compared in teting otherwise when compared in test will fail.
+
+	
+
+
+
+Assert -> Compares 2 values
+Verify -> Checks behaviour?	

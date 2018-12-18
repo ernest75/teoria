@@ -1,0 +1,68 @@
+
+Android is a platform, opearting system and a framekork at the same time.
+
+Unit testing in Android framework : 
+
+	- Superset of Java
+
+	- Adds Android specific APIs
+
+
+You can use Android APIs and still replace them with test doubles in unit tests.
+
+Minor challenges with Android Api :
+
+	- Never set to true the flag on the build graddle file unitTests.returnDefaultValues = 
+
+
+
+To keep classses unit testable:
+
+	- Don't use Android static APIs
+
+	- Don't instamtiate any Android specific classes
+
+	- Mock all Android dependencies (including data structures)
+
+In general you should avoid using static methods and you should inject collaborator objects from outside. Therefore the only real ,limitation is on the usage of Android specific data structures.
+
+Its not posible to unit test any code placed on activities.
+
+Commonly inherited Android classes that you can't unit test : 
+
+	- Application
+
+	- Activity
+
+	- Fragment
+
+	- View
+
+	- Sevice
+	...
+
+
+Android App layers : 
+
+	- User Interface (UI) Layer : Consists primary of Android Views witch aren't unit testable
+
+	- Application Layer : Consists of User input handling and flow control, contains Activities, Fragments and Services wich aren't unit testable. Keep logic in Activities, Fragments and Services to a minimum
+
+	- Domain Layer : Is the one moe important to test.
+	Three rulesto keep domain logic unit testable:
+
+		1. Don't put activities, fragments...
+
+		2. Don't issue static calls 
+
+		3. Don't instantiate Android data structures inside
+
+	- Infrastructure Layer : Contains the logic that implements generic functionality like networking, storage, event bus
+	Tetability depends on implementation choice(if u use content provider for persistents you can't unit test it)
+
+	Can often be replced with third-party libraries
+
+	- Infrastructure layer
+
+
+

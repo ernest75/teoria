@@ -1,0 +1,65 @@
+Test Doubles : is an object that replaces a production object for testing purposes.
+
+Type :
+
+	Fake : 
+			- Working substitution for the real unit
+			
+			- The difference btwen real unit and the fake is that fake's is optimized for tests 
+
+			- Ex : real unit persist data into disk dB, fake stores it in memory
+
+	Stub : 
+			- Returns a predifined data
+
+			- Returned data is fitted for test needs
+
+			- Ex : real unit executes network request and return data from the server, it can be substituted with a stub that can be programmed to return data that is needed for tests.
+
+	Mock : 
+
+			- Record interactions during the test
+
+			- Recorder interactions can be inspected
+
+
+When a test fails there are 3 posibilities : 
+
+	1. An error on the test itself
+
+	2. An error on the production code
+
+	3. The requirement is wrrng, so you tested something which is not really the requirement
+
+
+Mock can refer to:
+
+	- Test double of typpe mock
+
+	- Any test doubles in general
+
+	- Test double implemented using "mocking frameworl"
+
+
+You should avoid making functional static calls at all costs, static state is bad because it's shared among all tests.
+
+The problem with singletons is when tests start to fail seemingly randomly and you can't reproduce the issue. Seemingly randomly = flaky tests and are the worst type of not reliable tests you can have.
+
+Don't use singletons if you want your code to be unit testable.
+
+Test doubles fundamentals:
+
+	- Used to substitute external unit's dependencies in tests
+
+	- Three main types: fake, stub and mock
+
+	- Fake is a functional implementation optimized for tests.
+
+	- Stub return predefined data and can have programmable behavior
+
+	- Mock records interactions with itself and can be used to unsure that the system under test uses its collaborators properly
+
+	- Static methods are hidden dependencies that can't be substituted with test doubles
+
+	- Singletons can't be tested
+	

@@ -1,0 +1,115 @@
+El principio de desarrollo SOLID: Single responsibility, Open-closed, Liskov substitution, Interface segregation y Dependency inversión. 
+Estos cinco principios de la programación orientada a objetos, cuando se aplican de forma combinada facilitan la creación de un sistema fácil de mantener y extensible a lo largo del tiempo. Se trata de unas guías que nos ayudan a eliminar código basura. Se puede hacer utilizando algún framework o estrategia que nos ayude a refactorizar nuestro código fuente y que lo haga más legible y extensible. 
+
+Single responsibility: El principio empieza por asumir que cada clase debe tener un solo rol, una sola tarea para la cual ha sido creada y encapsular toda la lógica para llevar a cabo dicho trabajo. 
+
+Open Closed: los objetos o las entidades deben ser abiertas para su posible extensión, añadir funcionalidades a posteriori pero cerradas para modificaciones de lo ya desarrollado. 
+
+Liksov substituto: cada subclase o clase derivada debe ser sustituible por su clase base o su super clase.
+
+Interface segregation: Un cliente nunca debe ser forzado a implementar una interfaz que no use ni forzados a implementar un método que no necesite
+
+Dependency inversión: las entidades deben depender de las abstracciones, no de clases concretas, //es decir un módulo de alto nivel nunca debe depender de otro de bajo nivel, si no de abstracciones. És decir mejor depender de vehiculo que de coche.
+
+MVP :
+
+El modelo es una interface que define los datos que serán usados en la app y, en última instancia, cargados en la interfície gráfica de usuario.
+
+El presentador será el mediador entre el modelo de datos y la vista. Se encargará de recuperar datos desde repositorios o bases de datos (el modelo) y darle el formato necesario para que se muestren en la vista.
+
+La vista finalmente es una interface pasiva que se encargará de mostrar los datos del modelo y localizar los comandos e interactuación del usuario con la pantalla (los eventos) para notificarlos al presentador y que este pueda actuar en base a ellos.
+
+* Picture 1
+* Picture 2
+
+Bus event
+
+Un event bus fue un intento de "desacoplar" la arquitectura del framework de Android,
+	Framework Otto
+
+* Picture 3
+Mejora con cache * Picture 4
+
+Se complica cuando añades funcionalidades como firebase cloud messaging *Picture 5
+
+Un event bus no hace que el codigo sea facil de leer.
+
+Separacion de intereses (Separation of concerns):
+
+	- Evitar unir datos y vista
+
+	- Trabajo en equipo
+
+	- Unit Testing
+
+
+El mvp fue una mejora del event bus.
+
+MVP 
+
+La vista es passiva y toda su logica la contiene el presentador
+
+Arquitectura clean:
+
+*Picture 6
+
+	- Mdelo de dominio (entidades. agraados) : ninguna modificacion operacional deberia afectar a esta capa
+
+	- Casos de Uso : contiene reglas especificas de la aplicacion, implementa todos los casos de uso del sistema en base a la capa modelo de domino, los canvios en esta caapa no deberian afectar a la entidades
+
+	- Presenters : contiene la logica que permitre la presentacion de los datos y recupera los datos del modelo y los formatea antes de enviarleos a la vista
+
+	- Ui: las vistas son todas pasivas y no son capaces de acceder al modelo, la vista tiene una referencia a la capa inmediatamente mas interior, el presentador y propagara los eventos de la ui hacia el presentador pej boton clicado, eventos de ciclo de vida de la aplicacion. Expone metodos que controlan la prresentacion de los datos del modelo y que se pueden mostrar u ocultar.
+
+El Modelo : 
+
+	- Cada capa tiene sus modelos de datos y los modelos solo tienen información rerlevante para una sola capa.
+
+		- El modelo de la vista
+
+		- El modelo de la base de datos
+
+		- El modelo de la red
+
+	Cuando la información se mueve entre las capas, los modelos se transforman de una representación a otra diferente.
+
+
+El Presenter :
+	
+	- El presenter és el intermediario entre el modelo y la vista
+
+	- Contiene toda la lógca de presentación de la información
+
+	- Recupera la información del modelo
+
+	- Formatea la información antes de pasarla a la vista
+
+	- Actualizaa la UI a través de la vista
+
+
+La Vista :
+
+	- Representada por una actividad, fragmento o vista (Android view)
+
+	- Guarda la referencia del presentador
+
+	- Propaga los eventos desde la UI hacia el presenter
+
+	- Expone métodos que controlan la presentación de la información del modelo.
+
+Dependencias : 
+
+*Picture7
+
+	Model : Casos de uso y entidades
+
+	View : UI/View
+
+	Presenter : Presenters
+
+	Regla de dependencia : Cada capa solo puede depender de la que tiene inmediatamantee debajo, no podemos saltar ninguna capa en el proceso
+
+Se programa sobre interfaces en vez de implementaciones directas, la interface representa lo que la clase puede hacer pero sin definirlo.
+
+Patron de repositorio : es un patron que separa la logica que recibe y almazena los datos de la api remota o base da datos de la logica de business *Picture8
+

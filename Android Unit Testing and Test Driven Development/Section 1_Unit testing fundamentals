@@ -1,0 +1,64 @@
+
+Unit: Container of functionality that has specific responsability and clearly defined boundary. Most commonly a class in java.
+
+Testing : Ensure that the "thing" does what it's supposed to do.
+
+Unit testing : Ensuring that a class does what it's supposed to do
+
+You apply prededined inputs to units and make sure that they produce the expected output.
+
+Junit : unit testing framework for Java
+
+@Before : tells JUNit that this method must be run before each single test case. It's runed once, not before each single text
+
+Naming of the unit tests:
+
+	- When properly named unit test fails, you can investigate and fix the issue without reading unrelated code
+
+	- General guidelines for method names do not apply
+
+
+Unit test name patern:
+
+	<unitOfWork_<stateUnderTest>-<expectedBaehavior>
+
+	UnitOfWork can be defined as the "functionality element of a Unit" Ex StringDuplicator unitOfWork = duplicator +o-
+	StateUnderTest = "conditions parameters of the test" if u are testing when and int is positive xxxxx_intaIsPOsitive_returnxxx
+	Expected behaviour = result ex return true
+
+
+Nullability: 
+
+	- Method arguments and return values are non-null by default
+
+	- Nullable values will be explicity annotated with @Nullable
+
+	- No need to test null in most cases
+
+	- Requires discipline and sanitization of input data
+
+
+Boundary conditions are very common sources of bugs.
+
+How to chose test cases: 
+
+	- 100% line coverage is necessary , but not sufficient to ensure good coverage of SUT functionality.
+
+	- Identify different groups of input combinations corresponding to different states
+
+	- Write at least one test case for representative of each group
+
+	- Write test case for boundary conditions between differnet groups of inputs
+
+
+Sumarize section:
+
+	- Unit tests ensure that the system under test (unit) behaves according to the requirements
+
+	- Unit tests names should provide all the information required for failure investigation and debug
+
+	- Treat all arguments and return values as non-nullable unless annotated with @Nullable
+
+	- Think about differnet groups of combinations of state under test and test at least one representative from each group
+
+	- Identify and test boundary conditions

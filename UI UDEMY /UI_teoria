@@ -1,6 +1,65 @@
 Al treballar amb icones és millor treballar amb .svg que amb .png. Els svg són vectors i per tant no perden qualitat quant s'engrndeixen o es fan petits, mentres que els .png son fixes i si erden qualitat al ferse grans o petits. 
 
-Alhora d'importar icones, crear vector asset amb boto dret a drawable
+Alhora d'importar icones, crear vector asset amb boto dret a drawable.
+
+Per crear un gradient:
+
+	- Boto dret drawable, new drawable resource file
+
+	- Canviar selector per shape, crear gradient <gradient>
+
+	ex:
+	<gradient
+        android:angle="90"
+        android:startColor="@color/textColorLight"
+        android:endColor="@color/textColorLight"/>
+
+    <corners android:radius="4dp"/>
+
+    <padding
+        android:bottom="4dp"
+        android:top="4dp"
+        android:right="24dp"
+        android:left="24dp"/>
+
+
+ Els padding google recomana que siguin multipples de 8, 8,16,24
+
+ Animacions :
+
+ 	private var animationDuration: Long = 1000;
+    private var animatorSet = AnimatorSet();
+
+ 	De translacio :
+
+ 		    var animatorX = ObjectAnimator.ofFloat(animationActivityIvImagen1,"x",200f)
+            var animatorY = ObjectAnimator.ofFloat(animationActivityIvImagen1,"y",400f)
+            animatorX.setDuration(animationDuration)
+            animatorY.setDuration(animationDuration)
+            animatorSet.playTogether(animatorX,animatorY)
+            animatorSet.start()
+
+    De tranlacio + desapareixer : 
+
+    	 	var animmatorX = ObjectAnimator.ofFloat(animationActivityIvImagen2,"x",200f)
+            animmatorX.setDuration(animationDuration)
+            var alpha = ObjectAnimator.ofFloat(animationActivityIvImagen2, View.ALPHA, 1.0f,0.0f)
+            alpha.setDuration(animationDuration)
+            animatorSet.playTogether(animmatorX,alpha)
+            animatorSet.start()
+
+    De rotacio : 
+
+    		var rotatorAnimation = ObjectAnimator.ofFloat(animationActivityIvImagen3,"rotation",0f,360f)
+            rotatorAnimation.setDuration(animationDuration)
+            animatorSet.playTogether(rotatorAnimation)
+            animatorSet.start()
+
+    De transisio entre activities : 
+
+    	Creas dos animations resources a la carpeta anim de res anim1 anim2 + 
+    	  startActivity(Intent(this@HomeAnimation,FadeActivity::class.java))
+          overridePendingTransition(R.anim.fade_in,R.anim.fade_out)
 
 
 

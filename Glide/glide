@@ -18,4 +18,4 @@ Error es fa servir per ensenyar una imatge d'error quant s'ha produit un error a
 
 Fallback es fa servir per posar una imatge per default Pex una persona no ha posat foto en el seu profile
 
-Tambe pots fer crossfades d'un recurs a un altre, de placeholder a la image final perque l'efece sigui millor, per ferlo servir .transition(DrawableTransitionOptions.withCrossFade(ms)) oju que al tutorial tenen un bug amb aiixo i no sembla que estigui solucionat
+Tambe pots fer crossfades d'un recurs a un altre, de placeholder a la image final perque l'efece sigui millor, per ferlo servir .transition(DrawableTransitionOptions.withCrossFade(ms)) oju que al tutorial tenen un bug amb aixo i no sembla que estigui solucionat

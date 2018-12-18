@@ -1,0 +1,30 @@
+Frameworks de TDD y pruebas unitarias
+
+TestNG
+
+The Grinder
+
+Jtest
+
+Arquilian
+
+PowerMock
+
+mockito
+
+jwalk
+
+junit -> més comú
+
+Per implementar mockito i junit : testImplementation 'junit:junit:4.12'
+testImplementation 'org.mockito:mockito-core:2.+'
+
+Implementacion Junit : 
+
+ - Crear clase under test directory.
+
+ - Ponner anotacion @Before : le dice a JUNit cada vez que se ejecute una prueba, tienes que ejecutar primero este metodo, ojo porque si haces 6 tests el codigo de before se ejecuta 6 veces
+
+ Para objetos mockeados usamos directamente las interfaces no hace falta usar la clase que los imlementa de esta manera te abstraes de las implementaciones concretas.
+
+ Alhora de'utilitzar objectes simulats tbe has de simiular els seus metodes amb when(mockedObj.someMethod()).thenReturn(something);

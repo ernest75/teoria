@@ -1,0 +1,83 @@
+Mockito is a special framework that reduces the effort involved in immpplementation of the test doubles.
+
+Objects vs Data Strucuture(pojo)
+
+	Object class in java implicity inherited by both objects and data structures, big mistake in naming things cause they're not the same
+
+
+	- Objects :  
+
+		- Exposes behavior
+
+		- Hide internal implementation details
+
+		- When object have other objects as dependecies these other objexts need to be injected from outside
+
+		- Need to be unit tested explicitly
+
+		- Eligible to be substituted with test doubles
+
+	
+	- Data strucutures : 
+
+		- Expose data
+
+		- Should not have any behavior
+
+		- Can be instantiated by other objects and data structures
+
+		- Unit test for objects test data structures implicity so you don't need to test them
+
+		- No need to substitute with test doubles
+
+Structure of unit tests : 
+	
+	Triple AAA, Arrange, Act, Assert
+	
+	@Test
+    public void loginSync_success_usernameAndPasswordPassedToEndpoint() throws Exception {
+       
+        //Arrange
+        ArgumentCaptor<String> ac = ArgumentCaptor.forClass(String.class);
+       
+       //Act
+        SUT.loginSync(USERNAME, PASSWORD);
+       
+       //Assert
+        verify(mLoginHttpEndpointSyncMock, times(1)).loginSync(ac.capture(), ac.capture());
+        List<String> captures = ac.getAllValues();
+        assertThat(captures.get(0), is(USERNAME));
+        assertThat(captures.get(1), is(PASSWORD));
+    }
+
+    @RunWith(MockitoJUnitRunner.class) annotation intainitiate mocks objects with @Mock
+
+ Sumarize MOckito fundamentals
+
+ 	- Library that easily creates stubs and mocks
+
+ 	- Powerfull and versatile
+
+ 	- Non trivially with Mockito - fall back to manual test doubles
+
+
+ Mockito considerations : 
+
+ 	- A matter of personal preference
+
+ 	- More Mockito features - more complexity
+
+ Objects vs Data Structures
+
+ 	- Fundamental distinction in OOD
+
+ 	- Objects needs to be explicitly tested
+
+ 	- Inject objects from outside to allow substitution with test doubles
+
+ 	- Data structures are implicity tested
+
+ 	- Instantiate data structures whenever you need
+
+
+

@@ -1,0 +1,13 @@
+For example, in an imperative programming setting, {\displaystyle a:=b+c} a:=b+c would mean that {\displaystyle a} a is being assigned the result of {\displaystyle b+c} b+c in the instant the expression is evaluated, and later, the values of {\displaystyle b} b and {\displaystyle c} c can be changed with no effect on the value of {\displaystyle a} a. On the other hand, in reactive programming, the value of {\displaystyle a} a is automatically updated whenever the values of {\displaystyle b} b or {\displaystyle c} c change, without the program having to re-execute the statement {\displaystyle a:=b+c} a:=b+c to determine the presently assigned value of {\displaystyle a.} a.
+
+Problemas con Asynkc task:
+
+	- Los errores que ocurren el subproceso son dificiles de visualizar
+
+	- Limitaciones en la cantidad de tareas asincronas
+
+	- Si usuario cancela puede crear memory leaks
+
+
+
+.flatMap converteix els items emesos per un observable en nous observables, En aquest cas agafa l'observable de  twitch i el transforma en observables de game. Despres amb .just de game extreu l'string name amb game.getName();  
