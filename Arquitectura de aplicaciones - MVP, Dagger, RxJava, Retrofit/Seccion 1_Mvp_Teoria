@@ -5,7 +5,7 @@ Single responsibility: El principio empieza por asumir que cada clase debe tener
 
 Open Closed: los objetos o las entidades deben ser abiertas para su posible extensión, añadir funcionalidades a posteriori pero cerradas para modificaciones de lo ya desarrollado. 
 
-Liksov substituto: cada subclase o clase derivada debe ser sustituible por su clase base o su super clase.
+Lisksov substituto: cada subclase o clase derivada debe poder sustituir a su clase base o su super clase.
 
 Interface segregation: Un cliente nunca debe ser forzado a implementar una interfaz que no use ni forzados a implementar un método que no necesite
 

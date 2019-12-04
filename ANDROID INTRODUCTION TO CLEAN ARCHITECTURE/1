@@ -1,0 +1,69 @@
+CLEAN ARCHITECTURE
+
+Has 4 Layers :
+
+	- 1 Domain Logic : Contains specific business logic
+
+	- 2 Business Rules : Contains applications rules in the form UseCase classes that are tasks that can be caried out by the system like(send an email, deleting a picture...)
+
+	- 3 Interface Adapters : Contains presentation logic of the app aswewll as any controllers or gateways that are being used
+
+	- 4 Frameworks & Drivers : Contains any framework specific code, in android case references into the Android Framework
+
+The dependencies of the layers all point inwards, that means that the layer on the centre doesn't know anything about the other layers outside of it.  Layers are only aware of layers that sits inside of themselves. Each layer will contain his own representation of the data model.
+
+
+Why Clean Architecture :
+
+	- Clear speration of concerns between responsibillitis
+
+	- Decoupled responsibilities reduces frictions between teams
+
+	- Easier to mantain, navigate and extend on implementations
+
+	- Code bemcomes more testable, tests follow the same practices
+
+	- Makes sense for larger more complex projects
+
+	- But can apply simplified versions of concepts to smaller projects
+
+
+
+MODULES PROJECT : 
+
+	- 1 Domain Layer : will have UseCase classes, will provide taasks to get Projetcs, get bit mark pprojects, bit mark and unbit mark a project
+
+	- 2 Data Module : will orchestrate the data retrivial of the aplication and implement the required interface from the domain layer in order to satisfy the required data manipulation functionalities this data will also provide interfaces for the remote and cache module
+
+	- 3 Remote : will provide the required Api calls
+
+	- 4 Cache : will provide caching operations for the database
+
+	- 5 Presentation Layer : will contain the presentation logic of the aplication, will use MvvM to handle presentation of the app
+
+	- 6 UI module : contains android framework specific app impplementation
+
+	UI remote and cach layers are all from Drivers and Frameworks layers of clean Architecture
+
+	Presentation and Data are interface and adapters of clean architecture
+
+	Domain is Domain logic
+
+	There isn't Business Rules module as is merged in the domain layer and in most of the case you don't need this layer.
+
+	For simple apps you can simplify and use just remmote, cache , data and ui layer like so *picture 1
+
+
+1. Domain Layer : *pict2
+
+	Has the responsabiity of define the bussniess logic of the app, this includes the data model and the use case clases used to perform operations on this data. 
+	The UseCase clases will have the responsability not only of perfoming of some form of operation but as we use RxJava they also will take care of what thread of subsciption will be subscribed to on and also what thread the observation of this subscription will happen on.
+
+	There is a problem with the way RxJava handles the threading, if we call the subcribeon(Androidn.mainthread) we are breaking the rule of separation of concerns as the domain layer will use "android framework". To avoid this we'll create an interface to abstract our observing thread so our domain layer dosen't have any knowledge of the Android framework.
+
+	We need to create a model for the domain layer, as domain layer is the center layer of the app this data model represents our busniess rules for the app. Also as the domain layer dosen't care about remote calls we''l not tkae care here about endpoints...
+
+	We need to define some rules as to what's is to need to be implemeted to use the data model or modify this data, to do so we make an interface who will be implemnted by an outside data layer wich will implment the logic to provide the UseCases of the Domain Layer access to this data. You can see this interface as an inforcement, Domains Layer way of enforcing what can be done with application data without having any knowledge of the wheres and hows of the data, You can see this interface also as an abstraction for our Use cases in this layer. Ths usecases will interacct with this interface but the actual implementation of the interface will be injeccted from the data layer, this means our UseCase will be provided with in an implementation who onllhy will have knowledge of the methods available from the interface.
+
+
+

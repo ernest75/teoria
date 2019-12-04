@@ -1,0 +1,23 @@
+Just : create an Observable that emits a particular item
+
+From Array : create an Observable that emits a particular array 
+
+Create : create an Observable from scratch by means of a function
+
+Map : aplies a function to each item emited to modify it an emits that item
+
+Flat map : like map but emits an observable for each item
+
+ConcatMap : like flat map but caring about order.
+
+If order is importatnt use concatmap if speed is important use flatmap
+
+Buffer : Emits groups of items of the observable rather than emit item by item, the number of items to bee emited by eacch group is defined by user.
+
+Filter : Filters an observable making sure that emitted items match some condition.
+
+Distinct : Supress duplicate items emited by an observable
+
+Skip : supress the first n items emited by an observable
+
+SkipLast : supress the final n items emitted by an Observable

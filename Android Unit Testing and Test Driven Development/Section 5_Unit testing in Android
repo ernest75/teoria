@@ -62,7 +62,31 @@ Android App layers :
 
 	Can often be replced with third-party libraries
 
-	- Infrastructure layer
+
+
+Benefits of Unit testing ( =TDD )
+
+	- Testabillity requires good design
+
+	- Reduces the mental complllexity of software development(Ncles bob)
+
+	- Prevent bygs
+
+	- Prevents regressions
+
+	- Faster debug
+
+	- Best documentation
+
+	- Provides confidence
+
+Unit testing pragmatism :
+
+	- Master ubnit teting techniques
+
+	- Make reasonable effort to unit test the new code
+
+	- Either don't test a unit, or test all its requirements
 
 
 

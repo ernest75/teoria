@@ -69,8 +69,35 @@ Testing Observers :
 Model (Contact,CartItem...) needs to have equals and hashCode methods to be able to be compared in teting otherwise when compared in test will fail.
 
 	
-
-
-
 Assert -> Compares 2 values
 Verify -> Checks behaviour?	
+
+Scope of TDD : 
+
+	- Writing unit tests after the production code is hard
+
+	- For instructor TDD = unit testing
+
+	- TDD is a skill that needs to be practiced
+
+Tdd techniques : 
+
+All test up-front : 
+
+	- Good fit for small classes (three test cases or less)
+
+	- Can be used on projects with long build times
+
+
+Uncle's Bob's technique : 
+
+	- Granular
+
+	- Dinamic
+
+	- Guaranteed fumctional coverage
+
+	- Reduces mental complexity of software development
+
+	- Requires reasonable build times
+

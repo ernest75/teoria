@@ -1,0 +1,52 @@
+LSP : Subtypes must be substitutable for their supertypes
+
+Subtype : Subclass or realization which can be safely substituted for the type it extends or implements
+
+LSP Rules : 
+
+Method Signature Rules :
+
+	1.Contravariance of arguments:
+
+		1. If subclass iplements a method from its superclass, then the number of arguments should be the same.
+
+		2.The type of each argument in subclass method should be the supertype of the type of the respective argument in superclass method. 
+
+		Don't make subclass methods' arguments more specific (This rule will be enforced by compilers on static type languages)
+
+	2. Covariance of result:
+
+		1. Either both superclass' and subclass' methods return result, or either does
+
+		2. If there is a result, then the type of the result in the subclass is a subttype of the result in the superclass 
+		
+		Don't make subclass methods' return types more general
+
+	3.Exception rule:
+
+		1. Exceptions thrown by a method in the subclass should be contained in the set of exceptions thrown by the respective method in the superclass
+
+		Don't throw new types of exceptions from subcalsses
+
+
+Pre and Post - Conditon rules : 
+
+ Pre-condition : An assertion about the state of the system before the method is called
+
+
+	4. Pre-condition rule : Pre-conditions required by the subclass' method mustn't be stronger than the pre-conditions required by the superclass' method.
+
+Post-conditon : An assertion about the state of the system after method's execution completes.
+
+	5. Post-condition rule : Post-conditions guaranteed b the subclass' method mustn't be weaker than the post-conditions guaranteed by the superclass method
+
+Class Property rules : 
+
+	Invariant : An asserrtion about class property that always holds.
+
+	6. Invariant rule : Invaraints guaranteed by the subclass must ensure invariants guaranteed by the superclass
+
+	Constraint : An assertion about how class property evolves over time 
+
+	7. Constraint rule : Subclass consrtraints must ensure superclass constraints
+

@@ -1,0 +1,14 @@
+Subject objects can act as an Observer or as an Observable, it extends Observable calss an implements Observer interface.
+
+Subjects can be used as a bridge when convwerting projects from impperative programing to reactive.
+
+Types : 
+
+	- Async Subject : Only emits last value of Observable
+
+	- Behavior Subject : Emits the most reccently emitted item and all the subsequent items (emited later) of the source Observable
+
+	- Publish Subject : Emits all the subsequent items of the source Observable at the time of subscription
+
+	- Replay Subject : Emits all the items of the source Observable regardless of when the subscriber subscribes
+

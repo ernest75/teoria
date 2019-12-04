@@ -1,0 +1,35 @@
+Sistema de versiones VCS permite :
+	
+	1. Mantener un historial de modificaciones
+
+		- Revisar quién cambió qué y cuándo
+
+		- Volver a un punto anterior de la historia
+
+	2. Getsionar el trabajo en equipo
+
+		- Control de qué archivos se han cambiado
+
+		- Si dos personas han modificado un mismo a la vez, ayuda a mezclarlo y obtener un resultado final
+
+
+Git sheat https://www.git-tower.com/blog/git-cheat-sheet-es
+
+Para configurar github con proyecto:
+
+	1 - Desde terminal en android studio : git init 
+
+	2 - Comprobar por si no lo hace automaticamente en Preferences/Version Control que el sistema de Vcs que use sea git
+
+	3 - Ir a la tab Version Control, seleccionar todas las UNversioned files y pasarlas a DefaultChangeList ( = hacer add.)
+
+	4 - Hacer primer commit
+
+	Per veure diferencies entre el que tens y el commit anterior, vas a Local Changes, click dret sobre la file que vols inspeccionar y show diff, tambe es pot fer desde Log right click sobre la file que vols veure el diff
+
+	5 - Crear repo en github + button al costat del avatar sign in
+
+	6 - Seguir instruccions pagina per lligar amb locl amb diferents opcions( si tens creat el projecte, si no ...)
+
+	7 - Executar instruccins en la command 
+

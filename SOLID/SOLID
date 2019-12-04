@@ -1,0 +1,155 @@
+1 SINGLE RESPONSIBLE PRINCIPLE (SRP)
+
+SRP : Each class in a system should have only one responsbility
+
+More elavorated definition :
+
+SRP : You should be able to describe what each calss does without saying "and"
+
+Better definition :
+
+Srp : Each class should have only one reason to change
+
+Srp violations lead to excessive coupling, When several responsabillities get mixed it's very difiCult to ensure that changes to one of them won't affect other responsibilities 
+
+Final State Machine (FSM) = Component that handles inputs, produces outputs and has internal state
+
+Break functionalities into smaller classes even if you're sure that no modifications will be required
+
+Small, focused and easy to inter-connect classes open more options you will have in your aplcation's design and you cccan always refactor to a diferent structure
+
+SRP is the most important principle in object-oriented design
+
+
+
+
+2. OPEN CLOSE PRINCIPLE(OCP)
+
+Open Closed Principle (Ocp) : Software entities(classes, modules, functionns, etc...) should be open for extension, but closed for modification.
+
+OCP (1988) : No implementation changes after classses released to clients , Should be possible to extend all classes
+
+OCP (Uncle bob) : The answer is abstraction, a module can be extended by creating new derivates of the abstraction. In that manner you protect the client as he will be depending on the abstraction but you can also introduce new changes on the concretes immplementations of the abstraction.
+
+When you are not sure that I'll need to support multiple alternative implementations, or I can't predict what changes will be required in the future, I should avoid introducing additional abstractions.
+
+How to decide if whether to apply OCP or not : 
+
+	1. Is the anticipated change related to intrinsic instability of business requirements? If it is prepare your code for that change.
+
+	2. What kind of changes usually happen on projects like this one? 
+
+	3. If the potential change doesn't corresppond to 1 or 2 don't apply OCP initially
+
+	4. When requirements change, analyze the changes in code and identify opportunities for extraction of useful abstractions. Then refactor accordingly.
+
+
+
+
+3.  LISKOV SUBTITUTION PRINCIPLE(LSP)
+
+LSP : Subtypes must be substitutable for their supertypes
+
+Subtype : Subclass or realization which can be safely substituted for the type it extends or implements
+
+LSP Rules : 
+
+Method Signature Rules :
+
+	1.Contravariance of arguments:
+
+		1. If subclass iplements a method from its superclass, then the number of arguments should be the same.
+
+		2.The type of each argument in subclass method should be the supertype of the type of the respective argument in superclass method. 
+
+		Don't make subclass methods' arguments more specific (This rule will be enforced by compilers on static type languages)
+
+	2. Covariance of result:
+
+		1. Either both superclass' and subclass' methods return result, or either does
+
+		2. If there is a result, then the type of the result in the subclass is a subttype of the result in the superclass 
+		
+		Don't make subclass methods' return types more general
+
+	3.Exception rule:
+
+		1. Exceptions thrown by a method in the subclass should be contained in the set of exceptions thrown by the respective method in the superclass
+
+		Don't throw new types of exceptions from subcalsses
+
+
+Pre and Post - Conditon rules : 
+
+ Pre-condition : An assertion about the state of the system before the method is called
+
+
+	4. Pre-condition rule : Pre-conditions required by the subclass' method mustn't be stronger than the pre-conditions required by the superclass' method.
+
+Post-conditon : An assertion about the state of the system after method's execution completes.
+
+	5. Post-condition rule : Post-conditions guaranteed b the subclass' method mustn't be weaker than the post-conditions guaranteed by the superclass method
+
+Class Property rules : 
+
+	Invariant : An asserrtion about class property that always holds.
+
+	6. Invariant rule : Invaraints guaranteed by the subclass must ensure invariants guaranteed by the superclass
+
+	Constraint : An assertion about how class property evolves over time 
+
+	7. Constraint rule : Subclass consrtraints must ensure superclass constraints
+
+
+
+4. INTERFACE SEGREGATION PRINCIPLE(ISP)
+
+Interface Segregation Principle (ISP) : Clients shouldn't be forced to depend on methods they don't use
+
+
+
+
+5.DEPENDENCY INVERSION PRINCIPLE(DIP)
+
+DIP = High level modules should not depend on low-level modules. Both should depend on abstractions, AND Abstractions should not depend on details. Details should depend on abstractions.
+
+DIP arre guide lines that gobern usage of abstractions
+
+Abstractions betwen classes invert dependencies. 
+
+DIP provides technical foundation for Open Closed Principle
+
+DIP allows protection from changing requirements
+
+DIP advocates for strategic use of abstractions.
+
+DIP Benefits : 
+
+	- Protection from future changes
+
+	- Develop and test with fake implementations of external dependencies
+
+	- Easier integration between modules
+
+	- Change organizational intra- and inter-dependencies
+
+ABSTRACTIONS Costs : 
+
+	- Initial introduction
+
+	- Require more effort to change
+
+	- Increased code complexity due to dependency inversion
+
+So, introduce abstractions only when benefits outweight the costs
+
+
+
+RESUME
+
+	S = SINGLE RESPONSABILITY
+	O = OPEN CLOSED (OPEN FOR EXTENSION CLOSED FOR MODIFICATION)
+	L = LISKOV SUBSTITUTION PRINCIPLE = Cada clase que hereda de otra puede usarse como su padre sin necesidad de conocer las diferencias entre 
+		ellas.
+	I = INTERFACE SEGREGATION = CLients shouldn't be forced to depend on methods they don't use
+	D = DEPENDENCY INVERSION = High level modules should not depend on low-level modules. Both should depend on abstractions, AND Abstractions should not depend on details. Details should depend on abstractions. Abstractions betwen classes invert dependencies. 

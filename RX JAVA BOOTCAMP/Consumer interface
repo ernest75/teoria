@@ -1,0 +1,9 @@
+RxJava Consumer Interface : "A functional interface (callback) that accepts a single value"
+
+In very simple terms, when we are using it,  RxJava Library  creates an Observer, passes our Consumer to it an it gets called in onNext 
+
+Think about Consumer as a shortcut. We use RxJava Consumer Interface mainly for callbacks. 
+
+The concept of callbacks is to inform a class ( synchronous  or asynchronous) if some work in another class is done.
+
+Some call it the Hollywood principle: "Don't call us we call you"
