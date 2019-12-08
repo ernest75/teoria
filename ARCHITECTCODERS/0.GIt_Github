@@ -6,7 +6,7 @@ Sistema de versiones VCS permite :
 
 		- Volver a un punto anterior de la historia
 
-	2. Getsionar el trabajo en equipo
+	2. Gestionar el trabajo en equipo
 
 		- Control de qué archivos se han cambiado
 
@@ -32,4 +32,105 @@ Para configurar github con proyecto:
 	6 - Seguir instruccions pagina per lligar amb locl amb diferents opcions( si tens creat el projecte, si no ...)
 
 	7 - Executar instruccins en la command 
+
+Formes de treballar :
+
+	1 rama por desarrollador No recomendable
+
+	1 rama por feature mejor forma
+
+	Per nombrar ramas, nom del desaorllador + issue number + breu descripcio
+
+	Git flow te da una metodologia de como trabajar
+
+	Estructura de ramas recomendada :
+
+		- MASTER : COdigo validado
+
+		- RAMAS DE FEATURES : código especifico de una feature
+
+		- RAMAS DE RELEASE : código que coincide exactamente con lo que está publicado
+
+ORGANIZACION DEL PROYECTO :
+
+	- ISSUES : Identifican una pieza de trabajo que hay que realizar 
+
+		- Manejable y acotada en el tiempo
+
+		- Bien definida
+
+		- Puede identificar quién la va a realizar
+
+		- Se puede identificar el tipo mediante flags
+
+		- Puede pertenecer a un milestone
+
+		- Per tancar Issues directamnet amb el Commit, poses despres del message (close #numIssue)
+
+
+	- MILESTONES : Conjunto de tareas que se pretende terminar en un tiempo predefinido
+
+		- Ideal para metodologias ágiles: Spprints
+
+		- Acota una cantidad de trabajo en el tiempo
+
+		- Da una vision clara de foco
+
+	
+	- PULL REQUESTS : Permiten la revisión de código por parte de otros miembros
+
+		- Un PR por issue 
+
+		- Cambios en el codigo
+
+		- Quién lo revisa
+
+		- Lugar ideal para comentar distintos puntos de vista
+
+		- Como mergear pull request en github : 
+
+			- Create merge commit : crea un commit solo para mergear
+
+			- Squash and merge : coge todos los commits del pll request y los mergea a master
+
+			- Rebase and merge : La rama coge todos los cambios que hay en master y pone susu commits encima (*)
+
+	
+	- PROJECTS : Organizar las issues en formato Kanban
+
+		- Saber en cada momento en qué estas trabajando
+
+		- Estado de cada una de las tareas 
+
+		- Automated Kamban template
+
+
+	"GitFlow" Antonio : 
+
+		- Crear Issue, perque les Issues apareguin en el project , assignarlis projecte quant les crees
+
+		- Moure la a inOrogress a project
+
+		- Assignartela
+
+		- Ferla a Android Studio
+
+		- Crear Branca;, nombranla amb el teu nom, y el numero de la issue
+
+		- Fer commit, nombrantlo y al final si es fix (fix #numIssue) o si es new feature (close #mnumIssue)
+
+		- Fer push
+
+		- FFer Pull request posant el (fix #numIssue) o el (close #mnumIssue) als comments sense parentesis per tenir el link a la issue
+
+		- Revisarlo y aprobarlo
+
+		- Fer rebase and merge y tancar branca
+
+
+
+
+
+
+
 
