@@ -1,0 +1,127 @@
+
+Principio YAGNI (You Arent Gonna Need It)
+
+	- Si mo lo necesitas ahora no lo programes
+
+	- No podemos predecir el futuro 
+
+	- Tu yo de mañana tendra mas informacion que el de hoy
+
+	- No añadir complejidad de codigo innecesaria
+
+Principio DRY (Don't Repeat Yourself)
+
+	- Duplicar código es peligroso
+
+		- Más líneas de las necesarias
+
+		- Al modificar un lugar, se nos puede olvidar el resto
+
+	- Extrae la solución de una unidad propia
+
+		- Metodo 
+
+		- Clase
+
+El que es bsca es tenir la maxima cohesion amb el minim acoplament posible
+
+COHESION (Single Responsability)
+	
+	- Código que no necesita cambiar muy a menudo (Una unica rspponsabilidad muy bien definida) 
+
+	- Si una entidad hace dos cosas, ya tiene 2 motivos para cambiar.
+
+	- Es más reutilizable ( No sobran cosas cuando lo queremos usar en ottro sitio)
+
+ACOPLAMIENTO
+
+	- De qué otras entidades depende y cómo se relaciona con ellas
+
+	- El acomplamiento 0 no existe (Las entidades no pueden trabajar solas, necesitan de otras)
+
+	- Cómo desacoplarnos sin perder funcionalidad
+
+	- Cómo evitar acoplamineto : 
+
+		- Eliminar la dependencia
+
+		- Usar composicion en vez de herencia
+
+		- Depender de interfaces en vez de clases
+
+PRINCIPIOS SOLID
+
+	- Single responsibileity : Una clase, función o entidad debveria tener solo una razón para cambiar
+
+		- Asegurarse que las entidades en el código no están mezclando responsabilidades
+
+		- Si hay responsabilidades mezcladas, extrae esas partes a nuevas entidades y haz que interactuen con ellas
+
+		- Este principio es vita para conseguir un código escalable y flexible ante cambios
+
+		- Como detectetar si se esta violando este principio :
+
+			- En una misma clase estan involucradas dos capas de la arquitectura 
+
+			- El numero de metodos publicos, muchos es que esta haciendddo demasiadas cosas
+
+			- Los métodos que usan cada uno de los campos de esa clase 
+
+			- Por el numero de imports
+
+			- Cuesta testear la clase 
+
+			- Cada vez que escribes una nueva funcionalidad, esa clase se ve afectada
+
+			- Por el numero de lineas
+
+	- Open closed : Una entidad de software deberia estar abierta a extensión pero cerrada a modificación
+
+		- Tenemos que ser capaces de extender el comportamiento sin modificar su código
+
+		- Es muy importante cumplir SRP paara poder cumplir OCP
+
+		- Se suele utilizar polimorfismo : nuevo caso = nueva clase
+
+		- Como detectetar si se esta violando este principio :
+
+			- YA estamos cumpliendo SRP, y aun asi clase o entidad se modifica muy a menudo 
+
+			- Tenemos un if o un when que no para de crecer
+
+			- VArios ifs o whens con los mismos casos a lo largo del código
+
+	- Liskov, principode sustitucion de, : Si en aglubna parre de nuestro codigo estamos usando una clase, y esta case ees extendida, tenemos que 		poder utilizar cuakquiera de las hijas y que el programa sigga siendo válido
+
+		-La herencia hay que usarla con cuidado :
+
+			- Si una clase B se puede usa en lugar de A, usar herencia
+
+			- Si una clase B necesita usa el comportamiento de A, usar composicion 
+
+		- La clase derivada no deberia requerir mas ni prometer menos que la clase base.
+
+		- Como detectetar si se esta violando este principio :
+
+			- Un método sobrescrito no hace nada o lanza una excepción indicando que no esta soportado
+
+			- Un método sobrescrito no llama a super() y hace algo totalmente diferente
+
+		Problema : La composición genera mucho boilerplate y es difícil de mantener, en Kotlin es mucho más sencillo con el concepto de delegación de 	interfaces
+
+	- Interface segregation : Es mejor tener varias interfaces específicas de cadda cliente que una única interfaz de proposito general
+
+		- Se limita lo que los clientes pueden hacer con esas interfaces
+
+		- No se otorgan funcionalidades que al cliente no le interesan 
+
+		- Como detectetar si se esta violando este principio :
+
+			- Al implementsr una interfaz, dejamos algunos de sus metodos vacios porque no nos aplican
+
+			- Al usar una interfaz como clientes algunos de los metodos nos sobran
+
+			- Si ya nos está ocurriendo y no podemos modificarlo, mediante el pattron Adapter podemos partir la implementacion de una interfaz en varias
+
+
+
