@@ -123,5 +123,85 @@ PRINCIPIOS SOLID
 
 			- Si ya nos está ocurriendo y no podemos modificarlo, mediante el pattron Adapter podemos partir la implementacion de una interfaz en varias
 
+	- Dependency inversion : Las entidades deberian deender de absttracionnes no de concreciones
+
+		- Una clase A no debe depender de una concreta B, si no de una abstraccion (interfaz)
+
+			- Permite intercambiar facilmente esa dependencia 
+
+			- Un modulo puede comunicarse con otro sin necesidad de conocerlo (vital para arquitecturas con capas)
+
+		La IoC (Inversion of Control) = Las dependencias se proveen por constructor en vez de instanciarlas (no se hace new dentro de la clase), Una de las formas de aplicar la inversion de control es utilizar un inyector.  No confundir con este principio  
+
+		- Como detectetar si se esta violando este principio :
+
+			- Usamos una implementación concreta de un módulo que de repente tiene varias posibles implememtaciones 
+
+			- Intentamos instanciar un objeto de una clase que pertenece a otra capa mas externa, ejemplo : queremos usar un framework de base de datos desde e rrepositorio
+
+
+REGLAS DE DETECCION DE ERRORES 
+
+	- Longitud de metodos / funciiones
+
+		- Dificiles de leer
+
+		- Dificiles de reutilizar 
+
+		- Incitan a la duplicación de código
+
+		- Mezcla de niveles de abstracción
+
+		- Muchas razones para cambiar
+
+		- Muchos comentarios (obseletos)
+
+		- La funciones mu ylargas seguramente violan el SRP, OCP, DRY
+
+		- En los comentarios que explique lo que hace sin entrar en detalles un nivel inferior
+
+		- No hay un numero magico de lines (para saber si es demasiado largo) pero podemos marcarnos un numero maximo de lineas como referencia para que haga saltar la alarma (60LoC) 
+
+	- Longitud de clases / archivos = Longitud de metodos 
+
+		- 600 LoC
+
+	- Número máximo de argumentos 
+
+		- Muchas dependencias y muchas responsabilidades
+
+		- Baja cohesión, Alto acoplamiento
+
+		- La complejidad de la funcion hara que sea muy dificil de entender
+
+		- Mas dificil de controlar en constructores
+
+		- Limitr propuesto por Antonio 6 argumentos
+
+	- Usar nombres descriptivos
+
+		- Nombres que representen exactamente lo que hacen 
+
+	- Comentarios : Son buenos o malos?
+
+		- Muchas veces usuamos comentarios para explicar mal código
+
+		- Se vuelven obsoletos muy rapidamente
+
+		- Antes de comentar un código plantearse si es posible refactorizarlo 
+
+		Deben explicar el PORQUÉ, no el QUÉ 
+
+	- Uso de condicionales (if/when)
+
+		- No son inherentemente una mala idea
+
+		- Solucion por fuerza bruta a problemas que puedan abstraerse
+
+		- Considerar polimorfismo, sobretodo si las condiciones del if/when se repiten más de una vez 
+
+		Herramienta detekt : https://github.com/arturbosch/detekt, https://arturbosch.github.io/detekt/
+
+
 
 
