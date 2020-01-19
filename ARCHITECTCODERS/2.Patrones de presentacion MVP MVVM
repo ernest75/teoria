@@ -1,0 +1,185 @@
+Patrones de presentacion : 
+
+	- Permiten desacoplar la interfaz de la logica
+
+	- Suelen dividir la app en tres partes :
+
+		- Vista
+
+		- Modelo
+
+		- Intermediador
+
+
+Los mas comunes : MVC, MVP, MVVM
+
+Los tres tienen tres elementos : View <-> Middle Man <-> Model
+
+Las diferncias entre ellos radica en 2 partes : 
+
+	1. Quien recibe la interaccion del usuario
+
+	2. Como se comunican los 3 componentes enre ellos
+
+
+
+MVC : View <- Controller <-> Model
+
+	Las interacciones del usuario las reciibe el controlador
+
+	MVC en Android : XML <- ACTIVITY <-> Model
+
+	EL problema principal de este patron en Android es la activity (God Object) :
+
+		- Hace muchas cosas :
+
+			- Controlador extremadamente acoplado a la vista 
+
+		- Se mezcla totalmente la parte del inflado, binding, animaciones, logica de controlador
+
+		- Imposible desacoplarse del framework de Android
+
+			- Dificil de testear
+
+			- Dificil de reutilizar
+
+MVP : View <-> Presenter <-> Model
+
+	Las interacciones del usuario llegan a las vistas y no al presenter (Midleman)
+
+	- Desacopla al presenter del framework de Android
+
+		- Nos comunicamos con una interfaz que la activity o fragment impllementan
+
+	- Es un acoplamiento bajo pero existe 
+
+		- Cuando la vista cambia es posible que la interfaz se deba modificar
+
+	- A cambio podemos modificar la vista de forma muy atomica
+
+	- Tipos principales : 
+
+		- Passive View :
+
+			- La vista es tonta, metodos que le dicen exactamente que tiene que hacer
+
+			- El presenter decide toda la logica de UI
+
+				- Testing más sencillo 
+
+				- Crece muy rápido 
+
+			- Comunicación mediante interfaz 
+
+		- Presentation Model : 
+
+			- La vista tiene mmas logica, recibe un modelo que la representa, lo interpreta para actualizar la UI
+
+			- El presenter es mas ligero, la logica que se delega es mas dificil de testear
+
+			- Comunicacion mediante patron observer
+
+
+	MVP PASSIVE VIEW : 
+
+	 - MODDELO : Contiene toda la logica de negocio en nuestra aplicación
+
+	 	- En una arquitectura enllace con la capa de dominio 
+
+	 	- De momento, el proveedor de datos a mostrar en la vista 
+
+	 - VISTA : Es la activity o fragment
+
+	 	- Referencia al presenter, llama a sus metodos ante cualquier accion
+
+	 	- Implementa interfaz provista por el presenter
+
+	 - PRESENTER : Intermediario entre vista y modelo 
+
+	 	- Un metodo para cada posible accion que el usuario pueda hacer
+
+	 	- Interfaz para comunicar los resultados
+
+	 	- Es habitual usar nombres de metodos que no indiquen lo que tienen que hacer sino lo que ha ocurrido, desde la vista al presenter nunca le decimos lo que tiene que hacer sino lo que ha ocurrido en la vista
+
+
+
+
+
+MVVM : View *<----> ViewModel <-> Model * Databinding
+
+	Es parecido a MVP pero se basa en dataBinding para modificar la vista, en vez de integrarse a la vista con una interfaz , usa elementos observables que nos van a informar cuando el usuario interaccione con 
+
+	ellos y que podemos actualizar directamente desde el ViewModel
+
+	- Patron creado por Microsoft 
+
+	- El ViewModel se suscribe a las vistas mediante databinding y el patrón observer
+
+	- Sinplifica mucho el código binding
+
+	- El MVVM sin Databinding es simplemente MVP 
+
+	En android tenemos 2 aproximaciones : 
+
+		- MVVM real, usando databinding
+
+		- MVP más desacopladdo : la vista se subscribe al VM mediante observables 
+
+	En la variante mas cercana a MVP (sin DataBinding) los tipos son los mismos wue en Mvp, passive view, presentation model.
+
+	PASSIVE VIEW
+
+		- La vista es tonta : Comunicacion con un observable por vista
+
+		- El presenter decide toda la logica de UI 
+
+			- Testing mas sencillo 
+
+			- Crece más rapido
+
+	PRESENTATION MODEL
+
+		- La vista tiene mas logica 
+
+			- Recibe un modelo que la representa, deberia sser exactamente igual, variante Antonio: El mdodelo le dice a la vista el estado de lo que tiene que pintar, y la vista tomas decisiones extra
+
+			- Lo interpreta para actualizar la UI
+
+			- Normalmente suficientemente con un unico Observable
+
+		- El presenter es mas ligero
+
+			- La logica que se delega es mas dificil de testear
+
+			- Mas manejable
+
+	En Architecture components el ViewModel es una clase que es capaz de enganxarse al ciclo de vida del vie(acivitty o fragment) y sobrevir a las recreaciones
+
+	El LiveData es el observable en Architecture Components
+
+		- Se Enganxa a cualquier LifeCycleOwner
+
+		- Tiene dos variantes : 
+
+			- LiveData :
+
+				- Solo getter
+
+				- observe()
+
+				- Se expone publicamente
+
+			- MutableLiveData :
+
+				- Getter and Setter 
+
+				- Se expone en private
+
+	Si el ViewMOdel tiene argumentos hace falta crearse una factory, ViewMOdelproviders parra crear recuperar ViewModels
+
+
+
+
+
+				
