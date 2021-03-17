@@ -1,0 +1,7 @@
+Use Case : Puente entre logica del negocio y aplicación, las interacciones del usuario
+
+Capa Framework:
+
+	Hay que invertir las dependencias 
+
+	Se tienen que adaptar al contrato de los data sources

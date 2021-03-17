@@ -1,0 +1,93 @@
+
+Arquitectura software : ÉS un conjunto de estructuras y cómo esas estructuras interactuan entre ellas
+
+Generan: 
+
+	- Reglas para la creación de nuevo código
+
+	- Un lenguaje para comunicarse
+
+Arquitecturas más comunes: Clean, Ports $ Adapters, Onion
+
+Puntos más importantes de una arquitectura : 
+
+	- Componentes independientes
+
+	- Ayuda a abstraernos del mundo exterior
+
+	- Protege el dominio de nuestra app
+
+
+CLEAN ARCHITECTURE
+
+	- Las capas externas siempre se podran comunicar con capas internas pero no al reves. Las internas no conoceran a las internas y para comunicarnos entre ellas tendremos que seguir un tipo de estructura esecifica.
+
+	CONCEPTOS :
+
+		- Capas : 
+
+				- Són unidades de logica común
+
+				- Se comunican con otras capas mediante fronteras
+
+				- Permiten limitar la visibilidad, van a permitir que las capas mas externas puedan conocer a las internas pero no al revés.
+
+				* picture capas
+
+
+				1 La capa mas externa es la que se cmunica con el framework contiene la UI, todos los Xml, las activities... Toda la parte de UI que se coresponde especificamenrte con el framework de Android, tambien tenemos acceso a DB, servidores, integracion con el dispositivo , con sensores, notificaciones... todo lo que esta muy acoplado al framework. Es la más externa y es la que menos deberia afectar a uestro código porque es una capa de la que no podemos depender, ya que el framework podria canviar... Hay que aislar el core de nuestra aplicacion de esta capa y sus cambios.
+
+				2 La siguiente capa es la de adaptadores, es la que representa en nuestro código la interaccion con el codigo exterior. Nos permitiran modelar la capa 1, la más externa sin necesidad de hablar con ella directamente
+
+				3 Capa de logica de la aplicacion, Use cases que permiten modelar la app y en esta capa tbien estaria el repositorio. Todo lo que tiene que ver con logica de aplicación esta en esta capa. Aka Capa aplicación
+
+				4. Capa de logica de negocio ( Entities). Si el código que estamos escribiendo, se aplicaria igualmente si nos lo llevaramos a otra plataforma se pone en la capa de entities. Aka cap Dominio
+
+		- Interacción :
+
+				- Las capas más internas no conocen a las más extternas
+
+				- Hay interacciones que sí que tienen que ir hacia afuera
+
+				- Invertir las dependencias, creamos una interfaz en la capa más inerna que la capa más externa pueda implementar
+
+				- Las dependencias siempre van de afuera hacia dentro 
+
+				* picture interaccion
+
+		- Fronteras : 
+
+				- Puntos de conexión entre distintas capas
+
+				- Dependencia directa: pueden ser clases concretas
+
+				- Dependencia invertida: inerfaz con la que comunicarse
+
+
+
+		- Modelos : 
+
+				- Estructura de datos de cada capa 
+
+				- Transformaciones al pasar de una capa a otra
+
+				*picture capasAndroid
+
+				*ppicture cpas android+real
+
+				Las capas no tienen porque coresponderse con todo el anillo, los data source por ej no tienen porque tener acceso a los presenters, ni los UseCases a los Repositories
+
+
+			*picture aplicacion final
+
+			La capa de UI y la de framework estan en una misma capa
+
+			Los data sources se unen con los repos en la capa Data
+
+			*/PICTURE REQUE TE FINAL
+			L Al usas ViewModels la capa de presenters y ui la juntamos
+
+			*PICTURE CLEAN APP SPECIFIC
+
+
+

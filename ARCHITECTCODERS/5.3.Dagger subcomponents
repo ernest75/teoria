@@ -1,0 +1,11 @@
+Puede haber dependencias que solo nos interesen durante el  tiemmpo de vida de Activities o Fragments, mantenerlas en el grafo principal es un malgastto de memoria.
+
+Podemos crearnos Components que se crean y viven durante el tiempo de vida de esa Activity o fragment con la anotacion @Subcomponent
+
+Afegeix dinamicament un module a les part que el necessita, i d'aquesta forma pots passar arguments als modules d'activities o fragments
+
+Subcomponentes son componentes que se enganxan al ciclo de vida de una activity o fragment.
+
+Ex DetailFragmentModule
+
+Al MoviesComponent en comptes de pasarli el DetailFragmentModule en la definicio del component (@Component(modules = [AppModule::class, DataModule::class])) creeas un funcio que rep com a parametre el module que vols afegir per aquest fragment concret que retorni el component concret del fragment(DetailFragmentComponent), la funcio en si es com una dependencia que exposes. Si aquest fragment o act te algun objecte que necessita arguments que nomes els pots tenir despres de la creacio, aquests arguments els pases com a constructor al modul concret, quant el creas utiitzant la funcio definida.
