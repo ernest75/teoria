@@ -1,0 +1,93 @@
+
+Ventajas de los tests:
+
+	- Comprueban que el codigo haga lo que tiene que hacer.
+
+	- Permite dersarrollar funcionalidades de manera completa, sin tener que probar manualmente cada camimno.
+
+	- Nos obliga a crear codigo de calidad
+
+		- Cumplir los principios SOLID 
+
+		- Detectar code smells
+
+	- Mas seguridad si queremos refactorizar codigo
+
+
+Vilaciones de los principios SOLID detectables en testing :
+
+	- S : Cantidad de los diferentes caminos en los tests es muy elevado
+
+	- O : Cambiar el test en numerosas ocasiones cuando el software crece
+
+	- L : Un test de la clase padre no es valido para la clase hija
+
+	- I : Si implementamos metodos que se queden vacios, haremos tests que solo testean que ese metodo nbo hace nada
+
+	- D : Si no podemos mockear un elemento para realizar nuestro tests.
+
+Tipos tests:
+
+	- Test untitarios Junit
+
+		- Prueban una unica entidad, el resto de entidades se mockean o se proveen implentaciones propias
+
+		- El resto de entidades se mockean o proveen implementaciones propias (Test double)
+
+		- Son rapidos
+
+		- Los mas sencillos para empezar
+
+		Problema : Damos por hecho como se comiunica el exterior con nuestra entidad, son necesarios pero no suficientes.
+
+	- Test integracion Junit
+
+		- Comprueban cómo interactuan dos o mas entidades
+
+		- Si fallan no permiten detectar el punto
+
+		- Son menos propensos a modificaciones cuando el codigo cambia 
+
+		- Hay quien los incluye como otro tipo de Unit test
+
+	- UI tests Espresso
+
+		- Comprueban puntos en la UI
+
+			- Al realizar una acción, se actualiza
+
+			- Que los componentes esten bien posicionados
+
+		- Son mucho mas lentos y fragiles
+
+Filosofias de testing:
+
+	- 100% coverage
+
+	- 100% posibles estados(muy comlicado)
+
+	- Tetstear solo lo que aporte valor
+
+	- Crear tests de los bugs que se produzcan
+
+	Antonio's approach las dos ultimas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
