@@ -1,0 +1,16 @@
+Test de integracion : Comproueban	la vlidez de las interacciones entre distintos componentes
+
+
+Que testear?
+
+	* Las integraciones que pueden dar más problenmas
+
+	* Podemos hacer test casi end to end :
+
+		* Quitando la UI
+
+		* Quitando conexiones a servidores
+
+		* Pruebas muy cercanas a las reales
+
+Fakes : Son impplementaciones de las interfaces que tenemos para integrarnos con servicios externos dandoles la configurtacion deseada para los tests. 

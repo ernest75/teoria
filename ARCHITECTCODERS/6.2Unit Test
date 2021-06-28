@@ -1,0 +1,40 @@
+Ojo que en Kotlon totes les clases son final pero defecte per poder utilitzar mockito has de o be fer clases open(mala opció ) o afegir en les dependenices una especifica inline
+
+Dependencies de Kotlin mockito
+
+implementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+
+implementation 'org.mockito:mockito-inline:3.1.0'
+
+	Crear mocks:
+
+		- LA clase que necessita els mocks per crearseen el @Before la construim amb les variables mockejades:
+
+			lateinit var clasUnderTest;
+
+			@Before
+			fun setup(){
+				clasUnderTest = clasUnderTest(mockedObject1...n, notMockedObject...n)
+
+			}
+
+	Configurar los mocks : Le decimos que cuando se produzca una llamada a cierta función devuelva cierto valor
+
+		whenever(mockedObject.fun(arg)).thenReturn(object)
+
+	Verificar llamada
+
+	Verify simple comprobar si esa funcion se ha llamado y/o cuantas veces
+
+
+	Unit test Viewmodels:
+
+		- LiveData tiene 2 pobremals principales : 
+
+			- Siempre busca al mainthread para ejecutar los observers en tests falla se soluciona con rules
+
+		
+				Una rule en testing, identifica lo que se va hacer justo antes y justo despues de lanzar el test.Con los live data obliga a estos a ejecutarse en el hilo del test y no en el main.
+
+			- PArwa testear observamos al LIveDAta pero no tenemos un lifecycle, solucion obsertveforever con un obserbver mockeado
+
